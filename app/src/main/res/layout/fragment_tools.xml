@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/toolsLinearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -19,22 +20,87 @@
             android:textOn="Bluetooth On" />
 
         <ToggleButton
-            android:textOff="Wi-Fi Off"
-            android:textOn="Wi-Fi On"
             android:id="@+id/wifiButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Wi-Fi" />
+            android:text="Wi-Fi"
+            android:textOff="Wi-Fi Off"
+            android:textOn="Wi-Fi On" />
 
         <ToggleButton
-            android:textOff="Mobile Network Off"
-            android:textOn="Mobile Network On"
             android:id="@+id/cellNetworkButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cellular Networks" />
+            android:text="Cellular Networks"
+            android:textOff="Mobile Network Off"
+            android:textOn="Mobile Network On" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/toolsLinearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolsLinearLayout1"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <ToggleButton
+            android:id="@+id/autoSyncButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textOff="Auto-Sync Off"
+            android:textOn="Auto-Sync On" />
+
+        <ToggleButton
+            android:id="@+id/locationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textOff="Location Off"
+            android:textOn="Location On" />
+
+        <ToggleButton
+            android:id="@+id/autoRotateScreenButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textOff="Auto-rotate screen Off"
+            android:textOn="Auto-rotate screen On" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/toolsLinearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolsLinearLayout2"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/touchSettingsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Touch Settings" />
+
+        <ToggleButton
+            android:id="@+id/airplaneModeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textOff="Airplane Mode Off"
+            android:textOn="Airplane Mode On" />
+
+        <Button
+            android:id="@+id/adjustBrightnessButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Adjust Screen Brightness"/>
+    </LinearLayout>
+
 
 </RelativeLayout>

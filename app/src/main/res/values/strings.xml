@@ -2,4 +2,14 @@
     <string name="app_name">BanglaAssistant</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+
+
+    <string-array name="touchSettingsNameArray">
+        <item>Dial Pad touch tone</item>
+        <item>Touch Sound</item>
+        <item>Lock screen sound</item>
+        <item>Vibrate on touch</item>
+    </string-array>
+
 </resources>
