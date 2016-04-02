@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -22,7 +24,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import sayem.picosoft.banglaassistant.adapter.ProcessAdapter;
 import sayem.picosoft.banglaassistant.helper.PageOperationHelper;
+import sayem.picosoft.banglaassistant.helper.PageProcessHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -146,9 +150,10 @@ public class MainActivity extends AppCompatActivity {
                     textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
                     break;
                 case 2:
-                    rootView = inflater.inflate(R.layout.fragment_main, container, false);
-                    textView = (TextView) rootView.findViewById(R.id.section_label);
-                    textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                    rootView = inflater.inflate(R.layout.fragment_process, container, false);
+                    RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.processRecyclerView);
+                    recyclerView.setAdapter(new ProcessAdapter(getActivity(),new PageProcessHelper(getActivity()).getProcessList()));
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                     break;
                 case 3:
                     rootView = inflater.inflate(R.layout.fragment_tools,container,false);
