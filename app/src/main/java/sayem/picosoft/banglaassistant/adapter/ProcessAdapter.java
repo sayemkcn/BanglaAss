@@ -37,7 +37,7 @@ public class ProcessAdapter extends RecyclerView.Adapter<ProcessAdapter.MyViewHo
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, int position) {
         SingleProcessItem currentData = data.get(position);
-        myViewHolder.iconImageView.setImageResource(currentData.getIconId());
+        myViewHolder.iconImageView.setImageDrawable(currentData.getAppIcon());
         myViewHolder.applicationTitleTextView.setText(currentData.getApplicationTitle());
         myViewHolder.cpuInfoTextView.setText("CPU: " + currentData.getCpuUsage() + "%");
         myViewHolder.memoryInfoTextView.setText("MEM: " + currentData.getMemoryUsage());

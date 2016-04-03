@@ -1,10 +1,12 @@
 package sayem.picosoft.banglaassistant.model;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Created by sayemkcn on 4/2/16.
  */
 public class SingleProcessItem {
-    private int iconId;
+    private Drawable appIcon;
     private String applicationTitle;
     private float cpuUsage;
     private float memoryUsage;
@@ -43,18 +45,18 @@ public class SingleProcessItem {
     }
 
 
-    public int getIconId() {
-        return iconId;
+    public Drawable getAppIcon() {
+        return appIcon;
     }
 
-    public void setIconId(int iconId) {
-        this.iconId = iconId;
+    public void setAppIcon(Drawable appIcon) {
+        this.appIcon = appIcon;
     }
 
     @Override
     public String toString() {
         return "SingleProcessItem{" +
-                "iconId=" + iconId +
+                "appIcon=" + appIcon +
                 ", applicationTitle='" + applicationTitle + '\'' +
                 ", cpuUsage=" + cpuUsage +
                 ", memoryUsage=" + memoryUsage +
