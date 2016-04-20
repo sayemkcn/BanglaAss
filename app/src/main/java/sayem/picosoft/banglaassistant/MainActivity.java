@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
     }
 
 
@@ -124,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
 
         public PlaceholderFragment() {
         }
-
 
         /**
          * Returns a new instance of this fragment for the given section
