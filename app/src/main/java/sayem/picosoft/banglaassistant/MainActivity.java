@@ -1,5 +1,7 @@
 package sayem.picosoft.banglaassistant;
 
+import android.app.ActivityManager;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private PageProcessHelper mPageProcessHelper;
+
+    int mKilledAppCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mPageProcessHelper = new PageProcessHelper(this);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -78,12 +84,44 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(final View view) {
+                final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+                progressDialog.setTitle("Please wait..");
+                progressDialog.setMessage("Killing background processes and Boosting your phone.");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mKilledAppCount = mPageProcessHelper.killBackgroundProcesses();
+                        if (progressDialog.isShowing()) {
+                            progressDialog.cancel();
+                        }
+
+
+                        Snackbar snackbar = Snackbar.make(view, "Your phone has been boosted! \nCleaned " + mKilledAppCount + " apps", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null);
+                        Snackbar.SnackbarLayout layout = (Snackbar.SnackbarLayout) snackbar.getView();
+                        layout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                        snackbar.show();
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                int currentItem = mViewPager.getCurrentItem();
+                                mViewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
+                                mViewPager.setCurrentItem(currentItem);
+                            }
+                        });
+
+                    }
+                }).start();
+
+
             }
         });
     }
@@ -141,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = null;
             TextView textView = null;
-            switch (getArguments().getInt(ARG_SECTION_NUMBER)){
+            switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 1:
                     rootView = inflater.inflate(R.layout.fragment_main, container, false);
                     textView = (TextView) rootView.findViewById(R.id.section_label);
@@ -150,15 +188,16 @@ public class MainActivity extends AppCompatActivity {
                 case 2:
                     rootView = inflater.inflate(R.layout.fragment_process, container, false);
                     RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.processRecyclerView);
-                    recyclerView.setAdapter(new ProcessAdapter(getActivity(),new PageProcessHelper(getActivity()).getProcessList()));
+                    recyclerView.setAdapter(new ProcessAdapter(getActivity(), new PageProcessHelper(getActivity()).getProcessList()));
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
                     break;
                 case 3:
-                    rootView = inflater.inflate(R.layout.fragment_tools,container,false);
-                    PageOperationHelper helper= PageOperationHelper.newInstance(getActivity(),rootView);
+                    rootView = inflater.inflate(R.layout.fragment_tools, container, false);
+                    PageOperationHelper helper = PageOperationHelper.newInstance(getActivity(), rootView);
                     helper.initAndSetOperationToolsPage();
                     break;
-                default:break;
+                default:
+                    break;
             }
 
             return rootView;
@@ -181,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position+1);
+            return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override

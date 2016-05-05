@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,11 +37,13 @@ public class ProcessAdapter extends RecyclerView.Adapter<ProcessAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder myViewHolder, int position) {
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
         SingleProcessItem currentData = data.get(position);
         myViewHolder.iconImageView.setImageDrawable(currentData.getAppIcon());
         myViewHolder.applicationTitleTextView.setText(currentData.getApplicationTitle());
-        myViewHolder.cpuInfoTextView.setText("CPU: " + currentData.getCpuUsage() + "%");
-        myViewHolder.memoryInfoTextView.setText("MEM: " + currentData.getMemoryUsage());
+        myViewHolder.cpuInfoTextView.setText("CPU: " + df.format(currentData.getCpuUsage()) + "%");
+        myViewHolder.memoryInfoTextView.setText("Memory Available: " + currentData.getMemoryUsage()+" MB");
         myViewHolder.checkBox.setChecked(currentData.isChecked());
     }
 
