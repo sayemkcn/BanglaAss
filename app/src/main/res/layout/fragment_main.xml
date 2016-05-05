@@ -8,9 +8,57 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="sayem.picosoft.banglaassistant.MainActivity$PlaceholderFragment">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:id="@+id/textOnlyView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="16sp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/cpuTextView"
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content"
+            android:text="CPU" />
+
+        <TextView
+            android:textSize="16sp"
+            android:layout_marginRight="50dp"
+            android:id="@+id/memoryTextView"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MEMORY" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textOnlyView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/cpuUsageChangableTextView"
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content"
+            android:text="0.1%" />
+
+        <TextView
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginRight="50dp"
+            android:id="@+id/memoryUsageChangableTextView"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="75%" />
+    </RelativeLayout>
+
 
 </RelativeLayout>

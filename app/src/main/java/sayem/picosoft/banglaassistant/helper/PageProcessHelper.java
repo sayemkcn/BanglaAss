@@ -35,7 +35,6 @@ public class PageProcessHelper {
     private static String COMMAND_MEMORY_INFO ="/proc/meminfo";
 
     private float cpuUsage;
-
     public PageProcessHelper(Activity activity) {
         this.context = activity;
     }
@@ -215,14 +214,14 @@ public class PageProcessHelper {
                     count++;
                 }
             } catch (Exception e) {
-                Log.d("CAN_NOT_KILL_PROCESS",e.toString());
+                Log.d("KILL_PROCESS_SYSTEM_APP",e.toString());
             }
         }
 
         return count;
     }
 
-    private float readUsage(String command) {
+    public float readUsage(String command) {
         try {
             RandomAccessFile reader = new RandomAccessFile(command, "r");
             String load = reader.readLine();

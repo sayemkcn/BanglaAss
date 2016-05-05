@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import sayem.picosoft.banglaassistant.adapter.ProcessAdapter;
+import sayem.picosoft.banglaassistant.helper.PageMainHelper;
 import sayem.picosoft.banglaassistant.helper.PageOperationHelper;
 import sayem.picosoft.banglaassistant.helper.PageProcessHelper;
 
@@ -182,8 +183,7 @@ public class MainActivity extends AppCompatActivity {
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 1:
                     rootView = inflater.inflate(R.layout.fragment_main, container, false);
-                    textView = (TextView) rootView.findViewById(R.id.section_label);
-                    textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                    PageMainHelper pageMainHelper = new PageMainHelper(getActivity(),rootView);
                     break;
                 case 2:
                     rootView = inflater.inflate(R.layout.fragment_process, container, false);
