@@ -45,7 +45,12 @@
         <activity
             android:name=".TransparentActivity"
             android:label="@string/title_activity_transparent"
-            android:theme="@style/Theme.Transparent"></activity>
+            android:theme="@style/Theme.Transparent" />
+
+        <service
+            android:name=".service.UsageService"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>

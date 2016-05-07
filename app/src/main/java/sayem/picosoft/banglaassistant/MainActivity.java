@@ -30,6 +30,7 @@ import sayem.picosoft.banglaassistant.adapter.ProcessAdapter;
 import sayem.picosoft.banglaassistant.helper.PageMainHelper;
 import sayem.picosoft.banglaassistant.helper.PageOperationHelper;
 import sayem.picosoft.banglaassistant.helper.PageProcessHelper;
+import sayem.picosoft.banglaassistant.service.UsageService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +51,19 @@ public class MainActivity extends AppCompatActivity {
     private PageProcessHelper mPageProcessHelper;
 
     int mKilledAppCount = 0;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent intent = new Intent(getApplicationContext(), UsageService.class);
+        startService(intent);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopService(new Intent(getApplicationContext(),UsageService.class));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
