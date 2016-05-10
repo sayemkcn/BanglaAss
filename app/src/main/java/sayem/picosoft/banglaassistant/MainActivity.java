@@ -29,15 +29,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import sayem.picosoft.banglaassistant.adapter.ProcessAdapter;
 import sayem.picosoft.banglaassistant.helper.PageMainHelper;
 import sayem.picosoft.banglaassistant.helper.PageOperationHelper;
 import sayem.picosoft.banglaassistant.helper.PageProcessHelper;
+import sayem.picosoft.banglaassistant.model.SingleProcessItem;
 import sayem.picosoft.banglaassistant.service.UsageService;
 
 public class MainActivity extends AppCompatActivity {
 
     private static Intent serviceIntent;
+    private static List<SingleProcessItem> processList;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -98,8 +102,14 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                Log.d("PAGE","position: "+position+"\nPosition Offset: "+positionOffset+"\nPosition Offset Pixels: "+positionOffsetPixels);
-
+                Log.d("PAGE","position: "+position+"\nPosition Offset: "+positionOffset+"\nPosition Offset Pixels: "+positionOffsetPixels);
+//                if (position==1){
+//                    LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+//                    rootView = inflater.inflate(R.layout.fragment_process, null, false);
+//                    RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.processRecyclerView);
+//                    recyclerView.setAdapter(new ProcessAdapter(getApplicationContext(), new PageProcessHelper(MainActivity.this).getProcessList()));
+//                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext().getApplicationContext()));
+//                }
             }
 
             @Override
@@ -213,9 +223,22 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 2:
                     rootView = inflater.inflate(R.layout.fragment_process, container, false);
-                    RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.processRecyclerView);
-                    recyclerView.setAdapter(new ProcessAdapter(getActivity(), new PageProcessHelper(getActivity()).getProcessList()));
+                    final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.processRecyclerView);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            processList = new PageProcessHelper(getActivity()).getProcessList();
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    recyclerView.setAdapter(new ProcessAdapter(getActivity(),processList));
+                                }
+                            });
+                        }
+                    }).start();
+//                    recyclerView.setAdapter(new ProcessAdapter(getActivity(), new PageProcessHelper(getActivity()).getProcessList()));
+
                     break;
                 case 3:
                     rootView = inflater.inflate(R.layout.fragment_tools, container, false);
