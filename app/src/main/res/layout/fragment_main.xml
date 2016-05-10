@@ -224,6 +224,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/externalStorageLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/internalStorageLayout"
@@ -280,5 +281,15 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/talkingBatteryButton"
+        android:textColor="@android:color/holo_red_dark"
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/externalStorageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Activate Talking Battery" />
 
 </RelativeLayout>

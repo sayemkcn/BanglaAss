@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import java.text.DecimalFormat;
 
 import sayem.picosoft.banglaassistant.R;
+import sayem.picosoft.banglaassistant.TalkingBatteryActivity;
 import sayem.picosoft.banglaassistant.commons.DeviceStorage;
 
 /**
@@ -45,11 +47,12 @@ public class PageMainHelper extends BroadcastReceiver {
     private TextView extMemAvailTotalTextView;
     private Long availableMem;
     public static BroadcastReceiver BROADCASTRECEIVER;
+    private Button talkingBatteryButton;
 
     private ClickListener listener = new ClickListener();
 
 
-    public PageMainHelper(FragmentActivity activity, View rootView) {
+    public PageMainHelper(final FragmentActivity activity, View rootView) {
         this.activity = activity;
         this.mPageProcessHelper = new PageProcessHelper(activity);
         this.cpuUsageTextView = (TextView) rootView.findViewById(R.id.cpuUsageChangableTextView);
@@ -64,6 +67,7 @@ public class PageMainHelper extends BroadcastReceiver {
         this.extMemProgressBar = (ProgressBar) rootView.findViewById(R.id.extMemProgressBar);
         this.extMemAvailTotalTextView = (TextView) rootView.findViewById(R.id.extMemAvailTotalTextView);
         this.cpuMemoryLayout = rootView.findViewById(R.id.cpuMemoryLayout);
+        this.talkingBatteryButton = (Button) rootView.findViewById(R.id.talkingBatteryButton);
 
         if (BROADCASTRECEIVER == null) {
             BROADCASTRECEIVER = this;
@@ -106,6 +110,20 @@ public class PageMainHelper extends BroadcastReceiver {
 
         Log.d("INTERNAL_MEMORY", "Total: " + DeviceStorage.getTotalInternalMemorySize() + " Available: " + DeviceStorage.getAvailableInternalMemorySize());
         Log.d("EXTERNALL_MEMORY", "Total: " + DeviceStorage.getTotalExternalMemorySize() + " Available: " + DeviceStorage.getAvailableExternalMemorySize());
+
+        // If first run then open Battery Talking battery and close it for the sake of broadcast receiver working
+        if (!ifFirstRun()) {
+            this.talkingBatteryButton.setText("TALKING BATTERY SETTINGS");
+            this.talkingBatteryButton.setTextColor(activity.getResources().getColor(R.color.colorAccent));
+            this.talkingBatteryButton.setBackgroundColor(activity.getResources().getColor(android.R.color.transparent));
+        }
+        talkingBatteryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                talkingBatteryButton.setText("TALKING BATTERY SETTINGS");
+                activity.startActivity(new Intent(activity, TalkingBatteryActivity.class));
+            }
+        });
     }
 
     private void openSystemFileManager() {
@@ -113,6 +131,18 @@ public class PageMainHelper extends BroadcastReceiver {
         Uri uri = Uri.parse(Environment.getDataDirectory().getPath()); // a directory
         intent.setDataAndType(uri, "*/*");
         activity.startActivity(Intent.createChooser(intent, "Open folder"));
+    }
+
+    public boolean ifFirstRun() {
+        boolean isFirstRun = activity.getSharedPreferences("PREFERENCE", activity.MODE_PRIVATE).getBoolean("isFirstRun", true);
+        if (isFirstRun) {
+            activity.getSharedPreferences("PREFERENCE", activity.MODE_PRIVATE)
+                    .edit()
+                    .putBoolean("isFirstRun", false)
+                    .apply();
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -204,10 +234,10 @@ public class PageMainHelper extends BroadcastReceiver {
                             public void run() {
                                 new AlertDialog.Builder(activity)
                                         .setTitle("Boosted!")
-                                        .setMessage("Bamnn!!\nI've successfully Killed "+killedAppCount+" apps to boost your phone like a bomb!")
+                                        .setMessage("Bamnn!!\nI've successfully Killed " + killedAppCount + " apps to boost your phone like a bomb!")
                                         .setCancelable(false)
                                         .setIcon(activity.getResources().getDrawable(R.mipmap.ic_launcher))
-                                        .setPositiveButton("Thanks",null)
+                                        .setPositiveButton("Thanks", null)
                                         .show();
                             }
                         });

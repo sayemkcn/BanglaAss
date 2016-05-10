@@ -13,5 +13,38 @@
     <string name="appwidget_text">BOOST</string>
     <string name="add_widget">Add widget</string>
     <string name="title_activity_transparent">TransparentActivity</string>
+    <string name="title_activity_talking_battery">TalkingBatteryActivity</string>
+
+
+    <!--Talking Battery-->
+    <string name="app_link">https://play.google.com/store/apps/details?id=sayem.picosoft.talkingbattery</string>
+    <string name="dev_url">https://www.facebook.com/sayem.rimon</string>
+    <string name="fb_page_link">https://www.facebook.com/PicoSoftApps</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="prefTitleLanguage">Language</string>
+    <string name="prefTitleVoice">Voice</string>
+    <string name="voiceNotiCheckBoxText">Voice Notifications</string>
+    <string name="prefTitleStatusBar">Status Bar</string>
+    <string name="prefTitleWhatToNotify">What to Notify</string>
+    <string name="batteryLevelInStatusBarCheckBox">Battery Level in Status Bar</string>
+    <string name="usbConnectedCheckBox">USB Connected</string>
+    <string name="chargerConnectedCheckBox">Charger Connected</string>
+    <string name="batteryLowCheckBox">BatteryLow</string>
+    <string name="media_volume_text">Volume</string>
+    <string name="prefTitleAccent">Accent</string>
+    <string name="action_rate">Rate Me</string>
+    <string name="action_share">Share</string>
+    <string name="action_about">About</string>
+    <string name="action_like_us">Like Us</string>
+
+    <string-array name="languages">
+        <item>Bangla</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="accent">
+        <item>Female</item>
+        <item>Male</item>
+        <item>Chittagong Native</item>
+    </string-array>
 
 </resources>
