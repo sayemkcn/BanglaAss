@@ -2,9 +2,12 @@ package sayem.picosoft.banglaassistant;
 
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,10 +30,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import sayem.picosoft.banglaassistant.adapter.ProcessAdapter;
+import sayem.picosoft.banglaassistant.helper.PageMainHelper;
 import sayem.picosoft.banglaassistant.helper.PageOperationHelper;
 import sayem.picosoft.banglaassistant.helper.PageProcessHelper;
+import sayem.picosoft.banglaassistant.service.UsageService;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static Intent serviceIntent;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -51,9 +58,32 @@ public class MainActivity extends AppCompatActivity {
     int mKilledAppCount = 0;
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        stopService(serviceIntent);
+//        LocalBroadcastManager.getInstance(this).unregisterReceiver(PageMainHelper.BROADCASTRECEIVER);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (serviceIntent == null) {
+            serviceIntent = new Intent(getApplicationContext(), UsageService.class);
+        }
+        startService(serviceIntent);
+//        LocalBroadcastManager.getInstance(this).registerReceiver(
+//                PageMainHelper.BROADCASTRECEIVER, new IntentFilter("UsageUpdate"));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (serviceIntent == null) {
+            serviceIntent = new Intent(getApplicationContext(), UsageService.class);
+        }
+        startService(serviceIntent);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -182,8 +211,7 @@ public class MainActivity extends AppCompatActivity {
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 1:
                     rootView = inflater.inflate(R.layout.fragment_main, container, false);
-                    textView = (TextView) rootView.findViewById(R.id.section_label);
-                    textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                    PageMainHelper pageMainHelper = new PageMainHelper(getActivity(), rootView);
                     break;
                 case 2:
                     rootView = inflater.inflate(R.layout.fragment_process, container, false);
