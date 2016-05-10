@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.LocationManager;
+import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -20,6 +21,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -86,6 +88,7 @@ public class PageOperationHelper {
         this.volumeSettingButton = (Button) rootView.findViewById(R.id.volumeSettingButton);
         this.phoneRingtoneButton = (Button) rootView.findViewById(R.id.phoneRingtoneButton);
 
+
         // SET DEFAULTS FOR BUTTONS
         // bluetooth
         this.bluetoothButton.setChecked(BluetoothAdapter.getDefaultAdapter().isEnabled());
@@ -122,7 +125,22 @@ public class PageOperationHelper {
     }
 
     // Listener object for All of the tools button
-    class ButtonListener implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+    class ButtonListener implements View.OnClickListener, CompoundButton.OnCheckedChangeListener,SeekBar.OnSeekBarChangeListener {
+
+        private View volumeView;
+        private SeekBar ringerVolumeSeekbar;
+        private SeekBar notificationVolumeSeekbar;
+        private SeekBar mediaVolumeSeekbar;
+        private SeekBar alarmVolumeSeekbar;
+        private SeekBar voiceCallVolumeSeekbar;
+        private SeekBar systemVolumeSeekbar;
+        private TextView ringerVolumeTextView;
+        private TextView notificationVolumeTextView;
+        private TextView mediaVolumeTextView;
+        private TextView alarmVolumeTextView;
+        private TextView voiceCallVolumeTextView;
+        private TextView systemVolumeTextView;
+        AudioManager audioManager;
 
         @Override
         public void onClick(View v) {
@@ -143,12 +161,95 @@ public class PageOperationHelper {
                     showSleepTimeDialog();
                     break;
                 case R.id.volumeSettingButton:
+                    showVolumeDialog();
                     break;
                 case R.id.phoneRingtoneButton:
                     break;
             }
 
         }
+
+        private void showVolumeDialog() {
+
+            audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            View volumeView = LayoutInflater.from(context).inflate(R.layout.volume_settings_layout, null);
+            this.ringerVolumeSeekbar = (SeekBar) volumeView.findViewById(R.id.ringerVolumeSeekbar);
+            this.notificationVolumeSeekbar = (SeekBar) volumeView.findViewById(R.id.notificationVolumeSeekbar);
+            this.mediaVolumeSeekbar = (SeekBar) volumeView.findViewById(R.id.mediaVolumeSeekbar);
+            this.alarmVolumeSeekbar = (SeekBar) volumeView.findViewById(R.id.alarmVolumeSeekbar);
+            this.voiceCallVolumeSeekbar = (SeekBar) volumeView.findViewById(R.id.voiceCallVolumeSeekbar);
+            this.systemVolumeSeekbar = (SeekBar) volumeView.findViewById(R.id.systemVolumeSeekbar);
+
+            this.ringerVolumeTextView = (TextView) volumeView.findViewById(R.id.ringerVolumeTextView);
+            this.notificationVolumeTextView = (TextView) volumeView.findViewById(R.id.notificationVolumeTextView);
+            this.mediaVolumeTextView = (TextView) volumeView.findViewById(R.id.mediaVolumeTextView);
+            this.alarmVolumeTextView = (TextView) volumeView.findViewById(R.id.alarmVolumeTextView);
+            this.voiceCallVolumeTextView = (TextView) volumeView.findViewById(R.id.voiceCallVolumeTextView);
+            this.systemVolumeTextView = (TextView) volumeView.findViewById(R.id.systemVolumeTextView);
+
+            this.ringerVolumeSeekbar.setOnSeekBarChangeListener(listener);
+            this.notificationVolumeSeekbar.setOnSeekBarChangeListener(listener);
+            this.mediaVolumeSeekbar.setOnSeekBarChangeListener(listener);
+            this.alarmVolumeSeekbar.setOnSeekBarChangeListener(listener);
+            this.voiceCallVolumeSeekbar.setOnSeekBarChangeListener(listener);
+            this.systemVolumeSeekbar.setOnSeekBarChangeListener(listener);
+
+            ringerVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_RING)*14);
+            notificationVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_NOTIFICATION)*14);
+            mediaVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)*7);
+            alarmVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ALARM)*14);
+            voiceCallVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL)*20);
+            systemVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM)*14);
+
+            new AlertDialog.Builder(context)
+                    .setTitle("Volume Settings")
+                    .setView(volumeView)
+                    .setPositiveButton("Ok", null)
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        }
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            int id = seekBar.getId();
+            int volume = progress/14;
+            switch (id){
+                case R.id.ringerVolumeSeekbar:
+                    audioManager.setStreamVolume(AudioManager.STREAM_RING,volume,AudioManager.FLAG_ALLOW_RINGER_MODES | AudioManager.FLAG_PLAY_SOUND);
+                    Log.d("RINGER_VOLUME",volume+"");
+                    break;
+                case R.id.notificationVolumeSeekbar:
+                    audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION,volume,0);
+                    Log.d("NOTIFICATION_VOLUME",progress/14+"");
+                    break;
+                case R.id.mediaVolumeSeekbar:
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume*2,0);
+                    Log.d("MEDIA_VOLUME",(progress*2)/14+"");
+                    break;
+                case R.id.alarmVolumeSeekbar:
+                    audioManager.setStreamVolume(AudioManager.STREAM_ALARM,volume,0);
+                    Log.d("ALARM_VOLUME",progress/14+"");
+                    break;
+                case R.id.voiceCallVolumeSeekbar:
+                    audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,volume,0);
+                    Log.d("VOICE_CALL_VOLUME",progress/5+"");
+                    break;
+                case R.id.systemVolumeSeekbar:
+                    audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,volume,0);
+                    Log.d("SYSTEM_VOLUME",progress/14+"");
+                    break;
+            }
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+
 
         private void showSleepTimeDialog() {
             final CharSequence[] items = {"6 seconds", "15 seconds", "30 seconds", "1 minute", "2 minutes", "5 minutes", "10 minutes", "15 minutes", "30 minutes", "Never Timeout"};
@@ -281,6 +382,8 @@ public class PageOperationHelper {
                 showToast("Bluetooth turned on!");
             }
         }
+
+
     }
 
     private boolean isMobileDataEnabled() {
