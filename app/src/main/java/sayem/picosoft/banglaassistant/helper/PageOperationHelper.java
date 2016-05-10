@@ -125,7 +125,7 @@ public class PageOperationHelper {
     }
 
     // Listener object for All of the tools button
-    class ButtonListener implements View.OnClickListener, CompoundButton.OnCheckedChangeListener,SeekBar.OnSeekBarChangeListener {
+    class ButtonListener implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
 
         private View volumeView;
         private SeekBar ringerVolumeSeekbar;
@@ -164,9 +164,33 @@ public class PageOperationHelper {
                     showVolumeDialog();
                     break;
                 case R.id.phoneRingtoneButton:
+                    phoneRingerModeDialog();
                     break;
             }
 
+        }
+
+        private void phoneRingerModeDialog() {
+            final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            CharSequence[] items = {"Silent", "Vibration", "Ringtone", "Vibration & Ringtone"};
+            new AlertDialog.Builder(context)
+                    .setTitle("Ringtone Mode")
+                    .setSingleChoiceItems(items, audioManager.getRingerMode(), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (which == 0) {
+                                audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                            } else if (which == 1) {
+                                audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+                            } else if (which == 2) {
+                                audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                            } else if (which == 3) {
+                                audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                            }
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
         }
 
         private void showVolumeDialog() {
@@ -194,12 +218,12 @@ public class PageOperationHelper {
             this.voiceCallVolumeSeekbar.setOnSeekBarChangeListener(listener);
             this.systemVolumeSeekbar.setOnSeekBarChangeListener(listener);
 
-            ringerVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_RING)*14);
-            notificationVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_NOTIFICATION)*14);
-            mediaVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)*7);
-            alarmVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ALARM)*14);
-            voiceCallVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL)*20);
-            systemVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM)*14);
+            ringerVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_RING) * 14);
+            notificationVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_NOTIFICATION) * 14);
+            mediaVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) * 7);
+            alarmVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ALARM) * 14);
+            voiceCallVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL) * 20);
+            systemVolumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_SYSTEM) * 14);
 
             new AlertDialog.Builder(context)
                     .setTitle("Volume Settings")
@@ -208,34 +232,35 @@ public class PageOperationHelper {
                     .setNegativeButton("Cancel", null)
                     .show();
         }
+
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             int id = seekBar.getId();
-            int volume = progress/14;
-            switch (id){
+            int volume = progress / 14;
+            switch (id) {
                 case R.id.ringerVolumeSeekbar:
-                    audioManager.setStreamVolume(AudioManager.STREAM_RING,volume,AudioManager.FLAG_ALLOW_RINGER_MODES | AudioManager.FLAG_PLAY_SOUND);
-                    Log.d("RINGER_VOLUME",volume+"");
+                    audioManager.setStreamVolume(AudioManager.STREAM_RING, volume, AudioManager.FLAG_ALLOW_RINGER_MODES | AudioManager.FLAG_PLAY_SOUND);
+                    Log.d("RINGER_VOLUME", volume + "");
                     break;
                 case R.id.notificationVolumeSeekbar:
-                    audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION,volume,0);
-                    Log.d("NOTIFICATION_VOLUME",progress/14+"");
+                    audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, volume, 0);
+                    Log.d("NOTIFICATION_VOLUME", progress / 14 + "");
                     break;
                 case R.id.mediaVolumeSeekbar:
-                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume*2,0);
-                    Log.d("MEDIA_VOLUME",(progress*2)/14+"");
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume * 2, 0);
+                    Log.d("MEDIA_VOLUME", (progress * 2) / 14 + "");
                     break;
                 case R.id.alarmVolumeSeekbar:
-                    audioManager.setStreamVolume(AudioManager.STREAM_ALARM,volume,0);
-                    Log.d("ALARM_VOLUME",progress/14+"");
+                    audioManager.setStreamVolume(AudioManager.STREAM_ALARM, volume, 0);
+                    Log.d("ALARM_VOLUME", progress / 14 + "");
                     break;
                 case R.id.voiceCallVolumeSeekbar:
-                    audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,volume,0);
-                    Log.d("VOICE_CALL_VOLUME",progress/5+"");
+                    audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL, volume, 0);
+                    Log.d("VOICE_CALL_VOLUME", progress / 5 + "");
                     break;
                 case R.id.systemVolumeSeekbar:
-                    audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,volume,0);
-                    Log.d("SYSTEM_VOLUME",progress/14+"");
+                    audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, volume, 0);
+                    Log.d("SYSTEM_VOLUME", progress / 14 + "");
                     break;
             }
         }
