@@ -31,6 +31,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import sayem.picosoft.banglaassistant.R;
+import sayem.picosoft.banglaassistant.commons.Pref;
 
 /**
  * Created by sayemkcn on 4/1/16.
@@ -49,6 +50,9 @@ public class PageOperationHelper {
     private Button touchSettingsButton;
     private ToggleButton airplaneModeButton;
     private Button adjustBrightnessButton;
+    private Button sleepScreenButton;
+    private Button volumeSettingButton;
+    private Button phoneRingtoneButton;
 
     // For alert Dialog | brightness dialog
     View dialogView;
@@ -56,6 +60,7 @@ public class PageOperationHelper {
     SeekBar seekBar;
     boolean isBrightnessModeAutomatic = false;
 
+    int mScreenTimeout = 0;
 
     private PageOperationHelper() {
     }
@@ -77,6 +82,9 @@ public class PageOperationHelper {
         this.touchSettingsButton = (Button) rootView.findViewById(R.id.touchSettingsButton);
         this.airplaneModeButton = (ToggleButton) rootView.findViewById(R.id.airplaneModeButton);
         this.adjustBrightnessButton = (Button) rootView.findViewById(R.id.adjustBrightnessButton);
+        this.sleepScreenButton = (Button) rootView.findViewById(R.id.screenSleepTimeButton);
+        this.volumeSettingButton = (Button) rootView.findViewById(R.id.volumeSettingButton);
+        this.phoneRingtoneButton = (Button) rootView.findViewById(R.id.phoneRingtoneButton);
 
         // SET DEFAULTS FOR BUTTONS
         // bluetooth
@@ -108,6 +116,9 @@ public class PageOperationHelper {
         this.touchSettingsButton.setOnClickListener(listener);
         this.airplaneModeButton.setOnCheckedChangeListener(listener);
         this.adjustBrightnessButton.setOnClickListener(listener);
+        this.sleepScreenButton.setOnClickListener(listener);
+        this.volumeSettingButton.setOnClickListener(listener);
+        this.phoneRingtoneButton.setOnClickListener(listener);
     }
 
     // Listener object for All of the tools button
@@ -128,7 +139,69 @@ public class PageOperationHelper {
                         Log.d("SETTINGS_EX", e.toString());
                     }
                     break;
+                case R.id.screenSleepTimeButton:
+                    showSleepTimeDialog();
+                    break;
+                case R.id.volumeSettingButton:
+                    break;
+                case R.id.phoneRingtoneButton:
+                    break;
             }
+
+        }
+
+        private void showSleepTimeDialog() {
+            final CharSequence[] items = {"6 seconds", "15 seconds", "30 seconds", "1 minute", "2 minutes", "5 minutes", "10 minutes", "15 minutes", "30 minutes", "Never Timeout"};
+            int selectedIndex = 0;
+            String indexString = Pref.getPreferenceData(context, "screen_timeout_selected_index");
+            if (indexString != null && !indexString.equals("")) {
+                selectedIndex = Integer.parseInt(indexString);
+            }
+            new AlertDialog.Builder(context)
+                    .setTitle("Sleep")
+                    .setSingleChoiceItems(items, selectedIndex, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+//                            int timeout = 0;
+                            switch (which) {
+                                case 0:
+                                    mScreenTimeout = 6000;
+                                    break;
+                                case 1:
+                                    mScreenTimeout = 15000;
+                                    break;
+                                case 2:
+                                    mScreenTimeout = 30000;
+                                    break;
+                                case 3:
+                                    mScreenTimeout = 60000;
+                                    break;
+                                case 4:
+                                    mScreenTimeout = 120000;
+                                    break;
+                                case 5:
+                                    mScreenTimeout = 300000;
+                                    break;
+                                case 6:
+                                    mScreenTimeout = 600000;
+                                    break;
+                                case 7:
+                                    mScreenTimeout = 900000;
+                                    break;
+                                case 8:
+                                    mScreenTimeout = 1800000;
+                                    break;
+                                case 9:
+                                    mScreenTimeout = -1;
+                                    break;
+                            }
+                            dialog.dismiss();
+                            Pref.savePreference(context, "screen_timeout_selected_index", which + "");
+                            Toast.makeText(context, "Screen sleep time has been set to " + items[which], Toast.LENGTH_SHORT).show();
+                            android.provider.Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT, mScreenTimeout);
+                        }
+                    })
+                    .show();
 
         }
 
