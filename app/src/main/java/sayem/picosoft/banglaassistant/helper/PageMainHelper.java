@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Environment;
@@ -73,7 +74,6 @@ public class PageMainHelper extends BroadcastReceiver {
             BROADCASTRECEIVER = this;
         }
 
-
         /******** REGISTER LISTENER FORM MAINACTIVITY *******/
         LocalBroadcastManager.getInstance(this.activity).registerReceiver(
                 BROADCASTRECEIVER, new IntentFilter("UsageUpdate"));
@@ -106,20 +106,18 @@ public class PageMainHelper extends BroadcastReceiver {
         intMemProgressBar.setOnClickListener(listener);
         extMemProgressBar.setOnClickListener(listener);
         cpuMemoryLayout.setOnClickListener(listener);
+//        Log.d("INTERNAL_MEMORY", "Total: " + DeviceStorage.getTotalInternalMemorySize() + " Available: " + DeviceStorage.getAvailableInternalMemorySize());
+//        Log.d("EXTERNALL_MEMORY", "Total: " + DeviceStorage.getTotalExternalMemorySize() + " Available: " + DeviceStorage.getAvailableExternalMemorySize());
 
-
-        Log.d("INTERNAL_MEMORY", "Total: " + DeviceStorage.getTotalInternalMemorySize() + " Available: " + DeviceStorage.getAvailableInternalMemorySize());
-        Log.d("EXTERNALL_MEMORY", "Total: " + DeviceStorage.getTotalExternalMemorySize() + " Available: " + DeviceStorage.getAvailableExternalMemorySize());
-
-        // If first run then open Battery Talking battery and close it for the sake of broadcast receiver working
-        if (!ifFirstRun()) {
+//        // If first run then open Battery Talking battery and close it for the sake of broadcast receiver working
+        if (getPreferenceData("TalkingBatteryActivated") != null && getPreferenceData("TalkingBatteryActivated").equals("activated")) {
             this.talkingBatteryButton.setText("TALKING BATTERY SETTINGS");
             this.talkingBatteryButton.setTextColor(activity.getResources().getColor(R.color.colorAccent));
-            this.talkingBatteryButton.setBackgroundColor(activity.getResources().getColor(android.R.color.transparent));
         }
-        talkingBatteryButton.setOnClickListener(new View.OnClickListener() {
+        this.talkingBatteryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                savePreference("TalkingBatteryActivated", "activated");
                 talkingBatteryButton.setText("TALKING BATTERY SETTINGS");
                 activity.startActivity(new Intent(activity, TalkingBatteryActivity.class));
             }
@@ -131,18 +129,6 @@ public class PageMainHelper extends BroadcastReceiver {
         Uri uri = Uri.parse(Environment.getDataDirectory().getPath()); // a directory
         intent.setDataAndType(uri, "*/*");
         activity.startActivity(Intent.createChooser(intent, "Open folder"));
-    }
-
-    public boolean ifFirstRun() {
-        boolean isFirstRun = activity.getSharedPreferences("PREFERENCE", activity.MODE_PRIVATE).getBoolean("isFirstRun", true);
-        if (isFirstRun) {
-            activity.getSharedPreferences("PREFERENCE", activity.MODE_PRIVATE)
-                    .edit()
-                    .putBoolean("isFirstRun", false)
-                    .apply();
-            return true;
-        }
-        return false;
     }
 
     @Override
@@ -246,5 +232,21 @@ public class PageMainHelper extends BroadcastReceiver {
                 }).start();
             }
         }
+    }
+
+    private void savePreference(String key, String value) {
+        SharedPreferences sharedPref = activity.getSharedPreferences("BTBatteryForAssistant", Context.MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = sharedPref.edit();
+
+        prefEditor.putString(key, value);
+        prefEditor.apply();
+
+    }
+
+    private String getPreferenceData(String key) {
+        SharedPreferences sharedPref = activity.getSharedPreferences("BTBatteryForAssistant", Context.MODE_PRIVATE);
+
+        String data = sharedPref.getString(key, "");
+        return data;
     }
 }

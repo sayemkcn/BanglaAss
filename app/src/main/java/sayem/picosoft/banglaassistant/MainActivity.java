@@ -2,6 +2,7 @@ package sayem.picosoft.banglaassistant;
 
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -60,34 +61,31 @@ public class MainActivity extends AppCompatActivity {
     private PageProcessHelper mPageProcessHelper;
 
     int mKilledAppCount = 0;
+    int count = 0;
+
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        stopService(serviceIntent);
-//        LocalBroadcastManager.getInstance(this).unregisterReceiver(PageMainHelper.BROADCASTRECEIVER);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (serviceIntent == null) {
-            serviceIntent = new Intent(getApplicationContext(), UsageService.class);
+    protected void onStart() {
+        super.onStart();
+        if (count==0) {
+            this.startActivity(new Intent(MainActivity.this, SplashActivity.class));
+            count++;
         }
-        startService(serviceIntent);
-//        LocalBroadcastManager.getInstance(this).registerReceiver(
-//                PageMainHelper.BROADCASTRECEIVER, new IntentFilter("UsageUpdate"));
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         if (serviceIntent == null) {
             serviceIntent = new Intent(getApplicationContext(), UsageService.class);
         }
-        startService(serviceIntent);
+        try {
+            startService(serviceIntent);
+        }catch (Exception e){
+            Log.e("SERVICE",e.toString());
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -102,14 +100,8 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.d("PAGE","position: "+position+"\nPosition Offset: "+positionOffset+"\nPosition Offset Pixels: "+positionOffsetPixels);
-//                if (position==1){
-//                    LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
-//                    rootView = inflater.inflate(R.layout.fragment_process, null, false);
-//                    RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.processRecyclerView);
-//                    recyclerView.setAdapter(new ProcessAdapter(getApplicationContext(), new PageProcessHelper(MainActivity.this).getProcessList()));
-//                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext().getApplicationContext()));
-//                }
+//                Log.d("PAGE","position: "+position+"\nPosition Offset: "+positionOffset+"\nPosition Offset Pixels: "+positionOffsetPixels);
+
             }
 
             @Override
@@ -163,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
 
@@ -219,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 1:
                     rootView = inflater.inflate(R.layout.fragment_main, container, false);
-                    PageMainHelper pageMainHelper = new PageMainHelper(getActivity(), rootView);
+                    new PageMainHelper(getActivity(), rootView);
                     break;
                 case 2:
                     rootView = inflater.inflate(R.layout.fragment_process, container, false);
@@ -237,8 +230,7 @@ public class MainActivity extends AppCompatActivity {
                             });
                         }
                     }).start();
-//                    recyclerView.setAdapter(new ProcessAdapter(getActivity(), new PageProcessHelper(getActivity()).getProcessList()));
-
+//                    recyclerView.setAdapter(new ProcessAdapter(getActivity(), new PageProcessHelper(getActivity()).getProcessList()))
                     break;
                 case 3:
                     rootView = inflater.inflate(R.layout.fragment_tools, container, false);
