@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,288 +9,316 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="sayem.picosoft.banglaassistant.MainActivity$PlaceholderFragment">
 
-
-    <RelativeLayout
+    <android.support.v7.widget.CardView
         android:id="@+id/cpuMemoryLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        card_view:cardCornerRadius="15dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="50dp"
-            android:orientation="vertical">
+            android:padding="5dp">
 
-            <TextView
-                android:id="@+id/cpuTextView"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="CPU"
-                android:textSize="16sp" />
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="50dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/cpuUsageChangableTextView"
-                android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/cpuTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="CPU"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/cpuUsageChangableTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="0.1%"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="0.1%"
-                android:textColor="@android:color/black"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/memoryTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="MEMORY"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/memoryUsageChangableTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="75%"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp"
-            android:orientation="vertical">
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
-            <TextView
-                android:id="@+id/memoryTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="MEMORY"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/memoryUsageChangableTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="75%"
-                android:textColor="@android:color/black"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:id="@+id/batteryLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cpuMemoryLayout"
         android:layout_marginTop="30dp"
-        android:weightSum="3">
+        card_view:cardCornerRadius="15dp">
 
         <LinearLayout
-            android:id="@+id/batteryLevelLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_below="@+id/cpuMemoryLayout"
+            android:padding="10dp"
+            android:weightSum="3">
 
-            <TextView
-                android:id="@+id/batteryLevelStaticTextView"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/batteryLevelLayout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Battery Level"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/batteryLevelTextView"
-                android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/batteryLevelStaticTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Battery Level"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/batteryLevelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="91%"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/batteryTempLayout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="91%"
-                android:textColor="@android:color/black"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/batteryTempStaticTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Temperature"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/batteryTempTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="30C"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:id="@+id/batteryVoltageLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/batteryStaticTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" Voltage"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/batteryVoltageTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="4.4V"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
         </LinearLayout>
+    </android.support.v7.widget.CardView>
 
-        <LinearLayout
-            android:id="@+id/batteryTempLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/batteryTempStaticTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Temperature"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/batteryTempTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="30C"
-                android:textColor="@android:color/black"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-
-            android:id="@+id/batteryVoltageLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/batteryStaticTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text=" Voltage"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/batteryVoltageTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="4.4V"
-                android:textColor="@android:color/black"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/internalStorageLayout"
+    <android.support.v7.widget.CardView
+        android:id="@+id/storageLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/batteryLayout"
         android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        card_view:cardCornerRadius="15dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/internalStorageLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="5">
+                android:orientation="vertical"
+                android:padding="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Internal Memory" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/intMemAvailPercentageTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="25%" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="Internal Memory" />
+
+                        <TextView
+                            android:id="@+id/intMemAvailPercentageTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="25%" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:orientation="horizontal">
+
+                        <ProgressBar
+                            android:id="@+id/intMemProgressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5" />
+
+                        <TextView
+                            android:id="@+id/intMemAvailTotalTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="1.5GB/7.90GB" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/externalStorageLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:orientation="horizontal">
+                android:layout_below="@+id/internalStorageLayout"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:padding="10dp">
 
-                <ProgressBar
-                    android:id="@+id/intMemProgressBar"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5" />
-
-                <TextView
-                    android:id="@+id/intMemAvailTotalTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1.5GB/7.90GB" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/externalStorageLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/internalStorageLayout"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="5">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="External Memory" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/extMemAvailPercentageTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="25%" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:text="External Memory" />
+
+                        <TextView
+                            android:id="@+id/extMemAvailPercentageTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="25%" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:orientation="horizontal">
+
+                        <ProgressBar
+                            android:id="@+id/extMemProgressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5" />
+
+                        <TextView
+                            android:id="@+id/extMemAvailTotalTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="1.5GB/7.90GB" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:orientation="horizontal">
-
-                <ProgressBar
-                    android:id="@+id/extMemProgressBar"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5" />
-
-                <TextView
-                    android:id="@+id/extMemAvailTotalTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1.5GB/7.90GB" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
     <Button
-        android:layout_marginTop="10dp"
         android:id="@+id/talkingBatteryButton"
-        android:textColor="@android:color/holo_red_dark"
-        android:background="@android:color/transparent"
-        android:layout_below="@+id/externalStorageLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Activate Talking Battery" />
+        android:layout_below="@+id/storageLayout"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:text="Activate Talking Battery"
+        android:textColor="@android:color/holo_red_dark" />
 
 </RelativeLayout>

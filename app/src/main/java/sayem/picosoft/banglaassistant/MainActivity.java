@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static Intent serviceIntent;
     private static List<SingleProcessItem> processList;
+    private TabLayout tabLayout;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -78,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // init Tab Layout
+        tabLayout = (TabLayout) this.findViewById(R.id.tabLayout);
+        mViewPager = (ViewPager) findViewById(R.id.container);
+
         if (serviceIntent == null) {
             serviceIntent = new Intent(getApplicationContext(), UsageService.class);
         }
@@ -94,8 +100,9 @@ public class MainActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mPageProcessHelper = new PageProcessHelper(this);
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+
+
+
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -114,6 +121,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        // TAB LAYOUT
+        tabLayout.addTab(tabLayout.newTab().setText("Home"));
+        tabLayout.addTab(tabLayout.newTab().setText("Boost"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tools"));
+        // add viewpager with tablayout
+        tabLayout.setupWithViewPager(mViewPager);
+//        tabLayout.addTab(tabLayout.newTab().setText(this.getResources().getString(R.string.tab_featured_news)).setTag(TAG_FEATURED_NEWS_TAB));
+//        tabLayout.addTab(tabLayout.newTab().setText(this.getResources().getString(R.string.tab_latest_news)).setTag(TAG_LATEST_NEWS_TAB));
+//        tabLayout.addTab(tabLayout.newTab().setText(this.getResources().getString(R.string.tab_most_read)).setTag(TAG_MOST_READ_TAB));
+//        tabLayout.setOnTabSelectedListener(tabListener);
+
+        // Set up the ViewPager with the sections adapter.
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -137,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                         Snackbar snackbar = Snackbar.make(view, "Your phone has been boosted! \nCleaned " + mKilledAppCount + " apps", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null);
                         Snackbar.SnackbarLayout layout = (Snackbar.SnackbarLayout) snackbar.getView();
-                        layout.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                        layout.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                         snackbar.show();
 
                         runOnUiThread(new Runnable() {
@@ -274,11 +294,11 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "HOME";
                 case 1:
-                    return "SECTION 2";
+                    return "BOOST";
                 case 2:
-                    return "SECTION 3";
+                    return "TOOLS";
             }
             return null;
         }

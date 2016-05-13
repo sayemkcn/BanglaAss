@@ -2,75 +2,87 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:padding="5dp"
     android:weightSum="6">
 
-    <ImageView
-        android:layout_alignParentLeft="true"
-        android:id="@+id/iconImageView"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_weight="1"
-        android:src="@mipmap/ic_launcher" />
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="5dp"
+        card_view:cardCornerRadius="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/appInfoLayout"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_toRightOf="@id/iconImageView"
-        android:layout_width="wrap_content"
-        android:layout_toLeftOf="@+id/checkBox"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/titleTextView"
+        <RelativeLayout
+            android:padding="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Application Name"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            <ImageView
+                android:id="@+id/iconImageView"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentLeft="true"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_launcher" />
 
-            <TextView
-                android:id="@+id/cpuUsageTextView"
+            <LinearLayout
+                android:id="@+id/appInfoLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="Cpu usage" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/checkBox"
+                android:layout_toRightOf="@id/iconImageView"
+                android:layout_weight="4"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/memoryUsageTextView"
+                <TextView
+                    android:id="@+id/titleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Application Name"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/cpuUsageTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="Cpu usage" />
+
+                    <TextView
+                        android:id="@+id/memoryUsageTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="Memory usage" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text="Memory usage" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <CheckBox
-        android:layout_alignParentRight="true"
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/appInfoLayout"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray" />
+                android:layout_alignParentRight="true"
+                android:layout_weight="1" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+    <!--<View-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:layout_below="@+id/appInfoLayout"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:background="@android:color/darker_gray" />-->
 </RelativeLayout>

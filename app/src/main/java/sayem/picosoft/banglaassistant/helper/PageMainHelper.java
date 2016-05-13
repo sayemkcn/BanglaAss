@@ -112,7 +112,8 @@ public class PageMainHelper extends BroadcastReceiver {
 //        // If first run then open Battery Talking battery and close it for the sake of broadcast receiver working
         if (getPreferenceData("TalkingBatteryActivated") != null && getPreferenceData("TalkingBatteryActivated").equals("activated")) {
             this.talkingBatteryButton.setText("TALKING BATTERY SETTINGS");
-            this.talkingBatteryButton.setTextColor(activity.getResources().getColor(R.color.colorAccent));
+            this.talkingBatteryButton.setTextColor(activity.getResources().getColor(android.R.color.white));
+
         }
         this.talkingBatteryButton.setOnClickListener(new View.OnClickListener() {
             @Override

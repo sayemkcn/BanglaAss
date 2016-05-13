@@ -6,8 +6,6 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -46,8 +44,10 @@ public class TalkingBatteryActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) this.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (getPreferenceData("language")==null){
+
+        if (getPreferenceData("language") == null) {
             isFirstRun = true;
         }
 
@@ -203,7 +203,7 @@ public class TalkingBatteryActivity extends AppCompatActivity {
         }
         if (getPreferenceData("accent").equals("Male")) {
             accentSpinner.setSelection(1);
-        }else if(getPreferenceData("accent").equals("Chittagong Native")){
+        } else if (getPreferenceData("accent").equals("Chittagong Native")) {
             accentSpinner.setSelection(2);
         }
         if (getPreferenceData("voice").equals("no")) {
@@ -234,7 +234,7 @@ public class TalkingBatteryActivity extends AppCompatActivity {
         volumeSeekBar.setProgress(currentVolume * 6);
 
         // finish this activity if first run
-        if (isFirstRun){
+        if (isFirstRun) {
             this.finish();
         }
     }
@@ -277,6 +277,9 @@ public class TalkingBatteryActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == android.R.id.home) {
+            this.finish();
+        }
         if (id == R.id.action_share) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
