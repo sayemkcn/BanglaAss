@@ -120,10 +120,10 @@ public class PageMainHelper extends BroadcastReceiver {
             @Override
             public void onClick(View v) {
                 savePreference("TalkingBatteryActivated", "activated");
-                Snackbar snackbar = Snackbar.make(talkingBatteryButton,"Talking Battery has been activated!",Snackbar.LENGTH_LONG);
-                Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
-                snackbarLayout.setBackgroundColor(activity.getResources().getColor(R.color.colorPrimaryDark));
-                snackbar.show();
+//                Snackbar snackbar = Snackbar.make(talkingBatteryButton,"Talking Battery has been activated!",Snackbar.LENGTH_LONG);
+//                Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
+//                snackbarLayout.setBackgroundColor(activity.getResources().getColor(R.color.colorPrimaryDark));
+//                snackbar.show();
                 talkingBatteryButton.setText("TALKING BATTERY SETTINGS");
                 activity.startActivity(new Intent(activity, TalkingBatteryActivity.class));
             }
