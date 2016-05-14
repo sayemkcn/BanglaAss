@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3D720A</color>
-    <color name="colorPrimaryDark">#254C00</color>
-    <color name="colorAccent">#F20F50</color>
+    <color name="colorPrimary">#D4AF37</color>
+    <color name="colorPrimaryDark">#996515</color>
+    <color name="colorAccent">#FFD700</color>
 
     <color name="black_overlay">#66000000</color>
+    
+    <color name="toolsButtonBackground">@android:color/transparent</color>
 </resources>

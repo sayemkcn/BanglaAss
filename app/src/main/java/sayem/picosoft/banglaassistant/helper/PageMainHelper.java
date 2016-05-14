@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Environment;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -112,13 +113,17 @@ public class PageMainHelper extends BroadcastReceiver {
 //        // If first run then open Battery Talking battery and close it for the sake of broadcast receiver working
         if (getPreferenceData("TalkingBatteryActivated") != null && getPreferenceData("TalkingBatteryActivated").equals("activated")) {
             this.talkingBatteryButton.setText("TALKING BATTERY SETTINGS");
-            this.talkingBatteryButton.setTextColor(activity.getResources().getColor(android.R.color.white));
+            this.talkingBatteryButton.setTextColor(activity.getResources().getColor(R.color.colorAccent));
 
         }
         this.talkingBatteryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 savePreference("TalkingBatteryActivated", "activated");
+                Snackbar snackbar = Snackbar.make(talkingBatteryButton,"Talking Battery has been activated!",Snackbar.LENGTH_LONG);
+                Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
+                snackbarLayout.setBackgroundColor(activity.getResources().getColor(R.color.colorPrimaryDark));
+                snackbar.show();
                 talkingBatteryButton.setText("TALKING BATTERY SETTINGS");
                 activity.startActivity(new Intent(activity, TalkingBatteryActivity.class));
             }
