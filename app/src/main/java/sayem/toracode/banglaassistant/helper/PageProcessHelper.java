@@ -1,17 +1,13 @@
-package sayem.picosoft.banglaassistant.helper;
+package sayem.toracode.banglaassistant.helper;
 
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
-import android.os.Debug;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
 
@@ -23,8 +19,8 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import sayem.picosoft.banglaassistant.R;
-import sayem.picosoft.banglaassistant.model.SingleProcessItem;
+import sayem.toracode.banglaassistant.R;
+import sayem.toracode.banglaassistant.model.SingleProcessItem;
 
 /**
  * Created by sayemkcn on 4/2/16.

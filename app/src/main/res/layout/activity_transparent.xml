@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
     android:fitsSystemWindows="true"
-    tools:context="sayem.picosoft.banglaassistant.TransparentActivity">
+    tools:context="sayem.toracode.banglaassistant.TransparentActivity">
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,4 +1,4 @@
-package sayem.picosoft.banglaassistant.commons;
+package sayem.toracode.banglaassistant.commons;
 
 import android.app.Activity;
 import android.content.Context;

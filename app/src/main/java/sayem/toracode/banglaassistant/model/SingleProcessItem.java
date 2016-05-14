@@ -1,4 +1,4 @@
-package sayem.picosoft.banglaassistant.model;
+package sayem.toracode.banglaassistant.model;
 
 import android.graphics.drawable.Drawable;
 

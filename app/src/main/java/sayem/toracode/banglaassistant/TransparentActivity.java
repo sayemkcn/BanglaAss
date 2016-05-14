@@ -1,17 +1,11 @@
-package sayem.picosoft.banglaassistant;
+package sayem.toracode.banglaassistant;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
-import sayem.picosoft.banglaassistant.helper.PageProcessHelper;
+import sayem.toracode.banglaassistant.helper.PageProcessHelper;
 
 public class TransparentActivity extends Activity {
     private static final String KILL_ACTION = "kill_process";

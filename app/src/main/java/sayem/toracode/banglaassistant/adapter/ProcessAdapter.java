@@ -1,7 +1,6 @@
-package sayem.picosoft.banglaassistant.adapter;
+package sayem.toracode.banglaassistant.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +13,8 @@ import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 
-import sayem.picosoft.banglaassistant.R;
-import sayem.picosoft.banglaassistant.model.SingleProcessItem;
+import sayem.toracode.banglaassistant.R;
+import sayem.toracode.banglaassistant.model.SingleProcessItem;
 
 public class ProcessAdapter extends RecyclerView.Adapter<ProcessAdapter.MyViewHolder> {
     LayoutInflater inflater;

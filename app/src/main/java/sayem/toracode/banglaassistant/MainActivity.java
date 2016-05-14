@@ -1,4 +1,4 @@
-package sayem.picosoft.banglaassistant;
+package sayem.toracode.banglaassistant;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -28,12 +28,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import sayem.picosoft.banglaassistant.adapter.ProcessAdapter;
-import sayem.picosoft.banglaassistant.helper.PageMainHelper;
-import sayem.picosoft.banglaassistant.helper.PageOperationHelper;
-import sayem.picosoft.banglaassistant.helper.PageProcessHelper;
-import sayem.picosoft.banglaassistant.model.SingleProcessItem;
-import sayem.picosoft.banglaassistant.service.UsageService;
+import sayem.toracode.banglaassistant.adapter.ProcessAdapter;
+import sayem.toracode.banglaassistant.helper.PageMainHelper;
+import sayem.toracode.banglaassistant.helper.PageOperationHelper;
+import sayem.toracode.banglaassistant.helper.PageProcessHelper;
+import sayem.toracode.banglaassistant.model.SingleProcessItem;
+import sayem.toracode.banglaassistant.service.UsageService;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

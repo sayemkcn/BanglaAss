@@ -1,4 +1,4 @@
-package sayem.picosoft.banglaassistant.helper;
+package sayem.toracode.banglaassistant.helper;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -12,21 +12,18 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Environment;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
-import sayem.picosoft.banglaassistant.R;
-import sayem.picosoft.banglaassistant.TalkingBatteryActivity;
-import sayem.picosoft.banglaassistant.commons.DeviceStorage;
+import sayem.toracode.banglaassistant.R;
+import sayem.toracode.banglaassistant.TalkingBatteryActivity;
+import sayem.toracode.banglaassistant.commons.DeviceStorage;
 
 /**
  * Created by sayemkcn on 5/5/16.

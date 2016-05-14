@@ -1,4 +1,4 @@
-package sayem.picosoft.banglaassistant.helper;
+package sayem.toracode.banglaassistant.helper;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -6,7 +6,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
@@ -32,8 +31,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import sayem.picosoft.banglaassistant.R;
-import sayem.picosoft.banglaassistant.commons.Pref;
+import sayem.toracode.banglaassistant.R;
+import sayem.toracode.banglaassistant.commons.Pref;
 
 /**
  * Created by sayemkcn on 4/1/16.

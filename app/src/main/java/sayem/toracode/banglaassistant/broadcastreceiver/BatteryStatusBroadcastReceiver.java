@@ -1,4 +1,4 @@
-package sayem.picosoft.banglaassistant.broadcastreceiver;
+package sayem.toracode.banglaassistant.broadcastreceiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.BatteryManager;
 
-import sayem.picosoft.banglaassistant.R;
+import sayem.toracode.banglaassistant.R;
 
 /**
  * Created by sayemkcn on 5/10/16.

@@ -1,16 +1,12 @@
-package sayem.picosoft.banglaassistant.service;
+package sayem.toracode.banglaassistant.service;
 
-import android.app.ActivityManager;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
-
-import sayem.picosoft.banglaassistant.helper.PageProcessHelper;
 
 public class UsageService extends Service {
     private static final String COMMAND_CPU_USAGE = "/proc/stat";

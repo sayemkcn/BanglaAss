@@ -1,20 +1,15 @@
-package sayem.picosoft.banglaassistant.widget;
+package sayem.toracode.banglaassistant.widget;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
-import sayem.picosoft.banglaassistant.R;
-import sayem.picosoft.banglaassistant.TransparentActivity;
-import sayem.picosoft.banglaassistant.helper.PageProcessHelper;
+import sayem.toracode.banglaassistant.R;
+import sayem.toracode.banglaassistant.TransparentActivity;
 
 /**
  * Implementation of App Widget functionality.
