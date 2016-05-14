@@ -283,7 +283,7 @@ public class TalkingBatteryActivity extends AppCompatActivity {
         if (id == R.id.action_share) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this awesome Bangla Talking Battery Application http://goo.gl/6Vwh0v");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this awesome Bangla Assistant Application " + getResources().getString(R.string.app_url));
             sendIntent.setType("text/plain");
             startActivity(Intent.createChooser(sendIntent, "Share this App"));
 
@@ -291,7 +291,7 @@ public class TalkingBatteryActivity extends AppCompatActivity {
             new MaterialDialog.Builder(TalkingBatteryActivity.this)
                     .iconRes(R.mipmap.ic_launcher)
                     .title(R.string.app_name)
-                    .content("Developer:\nSayem Hossain\n\nDeveloper site:\nhttp://www.ekushay.com\n\nEmail:\nsayem@ekushay.com\n\nSpecial Credits(vocal):\nRahnuma Nishat(Standard Female)\nSifat Shaharear(Standard Male)\nArif Rafsan(Chittagong Native),")
+                    .content("Developer:\nSayem Hossain\n\nDeveloper site:\nhttp://www.ekushay.com\n\nEmail:\nsayem@ekushay.com")
                     .positiveText("Okay")
                     .negativeText("Contact Developer")
                     .callback(new MaterialDialog.ButtonCallback() {
@@ -303,11 +303,8 @@ public class TalkingBatteryActivity extends AppCompatActivity {
                         }
                     })
                     .show();
-        } else if (id == R.id.action_like_page) {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.fb_page_link)));
-            startActivity(browserIntent);
         } else if (id == R.id.action_rate) {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.app_link)));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.app_url)));
             startActivity(browserIntent);
         }
 

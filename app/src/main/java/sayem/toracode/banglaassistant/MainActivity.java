@@ -2,6 +2,7 @@ package sayem.toracode.banglaassistant;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -25,6 +26,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.List;
 
@@ -181,6 +184,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.exit(0);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -201,6 +209,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mViewPager.setCurrentItem(2);
         } else if (id == R.id.nav_talking_battery) {
             startActivity(new Intent(this, TalkingBatteryActivity.class));
+        } else if (id == R.id.nav_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this awesome Bangla Assistant Application " + getResources().getString(R.string.app_url));
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, "Share this App"));
+        } else if (id == R.id.nav_fb_page) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.app_fb_page)));
+            startActivity(browserIntent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -215,6 +232,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == android.R.id.home) {
+            this.finish();
+        }
+        if (id == R.id.action_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this awesome Bangla Assistant Application " + getResources().getString(R.string.app_url));
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, "Share this App"));
+
+        } else if (id == R.id.action_about) {
+            new MaterialDialog.Builder(MainActivity.this)
+                    .iconRes(R.mipmap.ic_launcher)
+                    .title(R.string.app_name)
+                    .content("Developer:\nSayem Hossain\n\nDeveloper site:\nhttp://www.ekushay.com\n\nEmail:\nsayem@ekushay.com\n\nLicense:\nGNU GPLV3")
+                    .positiveText("Okay")
+                    .negativeText("Contact Developer")
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onNegative(MaterialDialog dialog) {
+                            super.onNegative(dialog);
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.dev_url)));
+                            startActivity(browserIntent);
+                        }
+                    })
+                    .show();
+        } else if (id == R.id.action_rate) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.app_url)));
+            startActivity(browserIntent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -223,6 +270,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+        View rootView = null;
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -247,7 +295,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = null;
             TextView textView = null;
             switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
                 case 1:
@@ -280,10 +327,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 default:
                     break;
             }
-
+            Log.d("FRAGMENT_LIFECYCLE", "onCreateView");
             return rootView;
         }
-
 
     }
 

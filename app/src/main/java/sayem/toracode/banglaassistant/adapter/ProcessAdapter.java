@@ -1,6 +1,8 @@
 package sayem.toracode.banglaassistant.adapter;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,14 +37,14 @@ public class ProcessAdapter extends RecyclerView.Adapter<ProcessAdapter.MyViewHo
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder myViewHolder, int position) {
+    public void onBindViewHolder(final MyViewHolder myViewHolder, int position) {
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
         SingleProcessItem currentData = data.get(position);
         myViewHolder.iconImageView.setImageDrawable(currentData.getAppIcon());
         myViewHolder.applicationTitleTextView.setText(currentData.getApplicationTitle());
         myViewHolder.cpuInfoTextView.setText("CPU: " + df.format(currentData.getCpuUsage()) + "%");
-        myViewHolder.memoryInfoTextView.setText("Memory Available: " + currentData.getMemoryUsage()+" MB");
+        myViewHolder.memoryInfoTextView.setText("Memory Available: " + currentData.getMemoryUsage() + " MB");
         myViewHolder.checkBox.setChecked(currentData.isChecked());
     }
 
