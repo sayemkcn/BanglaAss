@@ -1,35 +1,30 @@
 package sayem.picosoft.banglaassistant;
 
-import android.app.ActivityManager;
 import android.app.ProgressDialog;
-import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -40,7 +35,7 @@ import sayem.picosoft.banglaassistant.helper.PageProcessHelper;
 import sayem.picosoft.banglaassistant.model.SingleProcessItem;
 import sayem.picosoft.banglaassistant.service.UsageService;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static Intent serviceIntent;
     private static List<SingleProcessItem> processList;
@@ -69,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (count==0) {
+        if (count == 0) {
             this.startActivity(new Intent(MainActivity.this, SplashActivity.class));
             count++;
         }
@@ -80,6 +75,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Navigation Drawer
+        DrawerLayout drawer = (DrawerLayout) this.findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) this.findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         // init Tab Layout
         tabLayout = (TabLayout) this.findViewById(R.id.tabLayout);
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -89,18 +96,14 @@ public class MainActivity extends AppCompatActivity {
         }
         try {
             startService(serviceIntent);
-        }catch (Exception e){
-            Log.e("SERVICE",e.toString());
+        } catch (Exception e) {
+            Log.e("SERVICE", e.toString());
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mPageProcessHelper = new PageProcessHelper(this);
-
-
 
 
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -187,6 +190,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+//        Toast.makeText(getApplicationContext(), "Clicked " + id, Toast.LENGTH_SHORT).show();
+        if (id == R.id.nav_overview) {
+            mViewPager.setCurrentItem(0);
+        } else if (id == R.id.nav_boost) {
+            mViewPager.setCurrentItem(1);
+        } else if (id == R.id.nav_tools) {
+            mViewPager.setCurrentItem(2);
+        } else if (id == R.id.nav_talking_battery) {
+            startActivity(new Intent(this, TalkingBatteryActivity.class));
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -194,7 +215,6 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-
 
         return super.onOptionsItemSelected(item);
     }
@@ -245,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    recyclerView.setAdapter(new ProcessAdapter(getActivity(),processList));
+                                    recyclerView.setAdapter(new ProcessAdapter(getActivity(), processList));
                                 }
                             });
                         }
@@ -294,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "HOME";
+                    return "Overview";
                 case 1:
                     return "BOOST";
                 case 2:
