@@ -1,7 +1,17 @@
 <resources>
-    <string name="app_name">BanglaAssistant</string>
+    <string name="app_name">Bangla Assistant</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="app_name_bangla">বাংলা অ্যাসিস্ট্যান্ট</string>
+
+
+    <string name="app_url">https://play.google.com/store/apps/details?id=sayem.toracode.banglaassistant</string>
+    <string name="app_fb_page">https://www.facebook.com/PicoSoftApps</string>
+
+
+    <string name="title_activity_transparent">TransparentActivity</string>
+    <string name="title_activity_talking_battery">টকিং ব্যাটারী</string>
+    <string name="title_activity_device_info">Device Info</string>
+    <string name="title_activity_splash">Splash Activity</string>
 
 
     <string-array name="touchSettingsNameArray">
@@ -12,6 +22,100 @@
     </string-array>
     <string name="appwidget_text">BOOST</string>
     <string name="add_widget">Add widget</string>
-    <string name="title_activity_transparent">TransparentActivity</string>
+
+
+
+    <string name="navigation_drawer_open">ড্রয়ার ওপেন করুন</string>
+    <string name="navigation_drawer_close">ড্রয়ার বন্ধ করুন</string>
+
+    <!--Talking Battery-->
+    <string name="dev_url">https://www.facebook.com/sayem.rimon</string>
+    <string name="fb_page_link">https://www.facebook.com/PicoSoftApps</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="prefTitleLanguage">ভাষা</string>
+    <string name="prefTitleVoice">কণ্ঠস্বর </string>
+    <string name="voiceNotiCheckBoxText">ব্যাটারি কথা বলবে </string>
+    <string name="prefTitleStatusBar">স্ট্যাটাস বার</string>
+    <string name="prefTitleWhatToNotify">কখন নোটিফিকেশন দেবে</string>
+    <string name="batteryLevelInStatusBarCheckBox">স্ট্যাটাস বারে ব্যাটারী লেভেল দেখাবে</string>
+    <string name="usbConnectedCheckBox">ইউএসবি কানেঙ্ক হলে</string>
+    <string name="chargerConnectedCheckBox">চার্জার কানেক্ট হলে</string>
+    <string name="batteryLowCheckBox">ব্যাটারী লো হলে</string>
+    <string name="media_volume_text">ভলিউম</string>
+    <string name="prefTitleAccent">উচ্চারন </string>
+
+    <!--options menu item-->
+    <string name="action_rate">আমাকে রেটিং দিন</string>
+    <string name="action_share">শেয়ার করুন</string>
+    <string name="action_about">অ্যাপ সম্পর্কে</string>
+    <string name="action_like_us">আমাদের ফেসবুক পেইজ</string>
+
+    <string-array name="languages">
+        <item>বাংলা</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="accent">
+        <item>কোকিলকন্ঠ</item>
+        <item>পুরুষকন্ঠ</item>
+        <item>চট্টগ্রাম স্থানীয়</item>
+    </string-array>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+
+
+    <string name="overviewTabText">ওভারভিউ</string>
+    <string name="boostTabText">বুস্ট</string>
+    <string name="toolsTabText">টুলসমূহ</string>
+
+    <!--Overview Fragment-->
+    <string name="deviceInfoStaticText">ডিভাইস সম্পর্কিত তথ্য</string>
+    <string name="cpuUsageStaticText">সিপিইউ</string>
+    <string name="freeMemoryStaticText">ফ্রি মেমোরী</string>
+    <string name="batteryLevelStaticText">ব্যাটারী লেভেল</string>
+    <string name="batteryTempStaticText">ব্যাটারী তাপমাত্রা</string>
+    <string name="bataryVoltageStaticText">ভোল্টেজ</string>
+    <string name="internalMemoryStaticText">ইন্টারনাল মেমোরী</string>
+    <string name="externalMemoryStaticText">এক্সটারনাল মেমোরী</string>
+
+    <string name="talkingBatteryActivateButtonText">টকিং ব্যাটারী অ্যাকটিভেট করুন</string>
+    <string name="talkingBatteryButtonText">টকিং ব্যাটারী সেটিংস</string>
+    <!--Tools Fragment-->
+    <string name="bluetoothButtonOnText">ব্লুটুথ চালু </string>
+    <string name="bluetoothButtonOffText">ব্লুটুথ বন্ধ </string>
+    <string name="wifiButtonOffText">ওয়াই-ফাই বন্ধ</string>
+    <string name="wifiButtonOnText">অটো সিঙ্ক চালু </string>
+    <string name="mobileNetworkButtonOnText">মোবাইল নেটওয়ার্ক চালু </string>
+    <string name="mobileNetworkButtonOffText">মোবাইল নেটওয়ার্ক বন্ধ</string>
+    <string name="autoSyncButtonOnText">অটো সিঙ্ক চালু </string>
+    <string name="autoSyncButtonOffText">অটো সিঙ্ক বন্ধ </string>
+    <string name="locationButtonOnText">লোকেশন চালু</string>
+    <string name="locationButtonOffText">লোকেশন বন্ধ</string>
+    <string name="autoRotateButtonOnText">ডিসপ্লে রোটেট চালু </string>
+    <string name="autoRotateButtonOffText">ডিসপ্লে রোটেট বন্ধ </string>
+    <string name="touchSettingsButtonText">টাচ সেটিংস </string>
+    <string name="airplaneModeOffText">এয়ারপ্লেন মোড বন্ধ </string>
+    <string name="airplaneModeOnText">এয়ারপ্লেন মোড চালু</string>
+    <string name="screenBrightnessButtonText">স্ক্রিনের উজ্জলতা </string>
+    <string name="sleepScreenButtonText">রিন বন্ধের সময়</string>
+    <string name="volumeSettingsButtonText">ভলিউম সেটিংস </string>
+    <string name="phoneRingtoneButtonText">রিংটোন মোড </string>
+    <string name="deviceInfoButtonText">ডিভাইস সম্পর্কিত তথ্য</string>
+
+
+    <string name="boostingDialogTitle">
+        দয়া করে অপক্ষা করুন..
+    </string>
+    <string name="boostingDialogDetails">
+        ব্যাকগ্রাউন্ডে চালু থাকা প্রসেসগুলো পরিষ্কার করা হচ্ছে..
+    </string>
+    <string name="boostedMessageStart">
+        ফোন বুস্ট করা হয়েছে।\n
+    </string>
+    <string name="boostedMessageEnd">
+        টি অ্যাপ পরিষ্কার করা হয়েছে।
+    </string>
+
 
 </resources>

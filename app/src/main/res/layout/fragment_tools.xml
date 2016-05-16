@@ -1,134 +1,302 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/toolsLinearLayout1"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3">
+        android:layout_height="match_parent">
 
-        <ToggleButton
-            android:id="@+id/bluetoothButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Bluetooth"
-            android:textOff="Bluetooth Off"
-            android:textOn="Bluetooth On" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ToggleButton
-            android:id="@+id/wifiButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Wi-Fi"
-            android:textOff="Wi-Fi Off"
-            android:textOn="Wi-Fi On" />
+            <LinearLayout
+                android:id="@+id/toolsLinearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="3">
 
-        <ToggleButton
-            android:id="@+id/cellNetworkButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cellular Networks"
-            android:textOff="Mobile Network Off"
-            android:textOn="Mobile Network On" />
-    </LinearLayout>
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/buttonCardMargin"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="@dimen/buttonCardCornerRadious">
 
-    <LinearLayout
-        android:id="@+id/toolsLinearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolsLinearLayout1"
-        android:orientation="horizontal"
-        android:weightSum="3">
+                    <ToggleButton
+                        android:id="@+id/bluetoothButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:text="Bluetooth"
+                        android:textOff="@string/bluetoothButtonOffText"
+                        android:textOn="@string/bluetoothButtonOnText" />
+                </android.support.v7.widget.CardView>
 
-        <ToggleButton
-            android:id="@+id/autoSyncButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textOff="Auto-Sync Off"
-            android:textOn="Auto-Sync On" />
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="10dp">
 
-        <ToggleButton
-            android:id="@+id/locationButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textOff="Location Off"
-            android:textOn="Location On" />
+                    <ToggleButton
+                        android:id="@+id/wifiButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:text="Wi-Fi"
+                        android:textOff="@string/wifiButtonOffText"
+                        android:textOn="@string/wifiButtonOnText" />
+                </android.support.v7.widget.CardView>
 
-        <ToggleButton
-            android:id="@+id/autoRotateScreenButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textOff="Auto-rotate screen Off"
-            android:textOn="Auto-rotate screen On" />
-    </LinearLayout>
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="10dp">
 
-    <LinearLayout
-        android:id="@+id/toolsLinearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolsLinearLayout2"
-        android:orientation="horizontal"
-        android:weightSum="3">
+                    <ToggleButton
+                        android:id="@+id/cellNetworkButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:text="Cellular Networks"
+                        android:textOff="@string/mobileNetworkButtonOffText"
+                        android:textOn="@string/mobileNetworkButtonOnText" />
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/touchSettingsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Touch Settings" />
 
-        <ToggleButton
-            android:id="@+id/airplaneModeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textOff="Airplane Mode Off"
-            android:textOn="Airplane Mode On" />
+            <LinearLayout
+                android:id="@+id/toolsLinearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolsLinearLayout1"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="3">
 
-        <Button
-            android:id="@+id/adjustBrightnessButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Adjust Screen Brightness"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/toolsLinearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolsLinearLayout3"
-        android:orientation="horizontal"
-        android:weightSum="3">
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/buttonCardMargin"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="@dimen/buttonCardCornerRadious">
 
-        <Button
-            android:id="@+id/screenSleepTimeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Sleep Screen" />
+                    <ToggleButton
+                        android:id="@+id/autoSyncButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:textOff="@string/autoSyncButtonOffText"
+                        android:textOn="@string/autoSyncButtonOnText" />
+                </android.support.v7.widget.CardView>
 
-        <Button
-            android:id="@+id/volumeSettingButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Volume Settings" />
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/buttonCardMargin"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="@dimen/buttonCardCornerRadious">
 
-        <Button
-            android:id="@+id/phoneRingtoneButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Phone Ringtone"/>
-    </LinearLayout>
+                    <ToggleButton
+                        android:id="@+id/locationButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:textOff="@string/locationButtonOffText"
+                        android:textOn="@string/locationButtonOnText" />
+                </android.support.v7.widget.CardView>
 
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/buttonCardMargin"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="@dimen/buttonCardCornerRadious">
+
+                    <ToggleButton
+                        android:id="@+id/autoRotateScreenButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:textOff="@string/autoRotateButtonOffText"
+                        android:textOn="@string/autoRotateButtonOnText" />
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/toolsLinearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolsLinearLayout2"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="3">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/buttonCardMargin"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="@dimen/buttonCardCornerRadious">
+
+                    <Button
+                        android:id="@+id/touchSettingsButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:text="@string/touchSettingsButtonText" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/buttonCardMargin"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="@dimen/buttonCardCornerRadious">
+
+                    <ToggleButton
+                        android:id="@+id/airplaneModeButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:textOff="@string/airplaneModeOffText"
+                        android:textOn="@string/airplaneModeOnText" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/buttonCardMargin"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="@dimen/buttonCardCornerRadious">
+
+                    <Button
+                        android:id="@+id/adjustBrightnessButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:text="@string/screenBrightnessButtonText" />
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/toolsLinearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolsLinearLayout3"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="3">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/buttonCardMargin"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="@dimen/buttonCardCornerRadious">
+
+                    <Button
+                        android:id="@+id/screenSleepTimeButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:text="@string/sleepScreenButtonText" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/buttonCardMargin"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="@dimen/buttonCardCornerRadious">
+
+                    <Button
+                        android:id="@+id/volumeSettingButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:text="@string/volumeSettingsButtonText" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/buttonCardMargin"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="@dimen/buttonCardCornerRadious">
+
+                    <Button
+                        android:id="@+id/phoneRingtoneButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:text="@string/phoneRingtoneButtonText" />
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/toolsLinearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolsLinearLayout4"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="3">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/buttonCardMargin"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="@dimen/buttonCardCornerRadious">
+
+                    <Button
+                        android:id="@+id/talkingBatteryButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:text="@string/talkingBatteryButtonText" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/buttonCardMargin"
+                    android:layout_weight="1"
+                    card_view:cardCornerRadius="@dimen/buttonCardCornerRadious">
+
+                    <Button
+                        android:id="@+id/deviceInfoButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/toolsButtonBackground"
+                        android:padding="@dimen/buttonPadding"
+                        android:text="@string/deviceInfoButtonText" />
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
