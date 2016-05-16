@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static Intent serviceIntent;
     private static List<SingleProcessItem> processList;
     private TabLayout tabLayout;
+    private NavigationView navigationView;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -88,8 +89,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) this.findViewById(R.id.nav_view);
+        this.navigationView = (NavigationView) this.findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_boost);
         // init Tab Layout
         tabLayout = (TabLayout) this.findViewById(R.id.tabLayout);
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -147,8 +149,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(final View view) {
                 final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-                progressDialog.setTitle("Please wait..");
-                progressDialog.setMessage("Killing background processes and Boosting your phone.");
+                progressDialog.setTitle(getResources().getString(R.string.boostingDialogTitle));
+                progressDialog.setMessage(getResources().getString(R.string.boostingDialogDetails));
                 progressDialog.setCancelable(false);
                 progressDialog.show();
                 new Thread(new Runnable() {
@@ -160,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }
 
 
-                        Snackbar snackbar = Snackbar.make(view, "Your phone has been boosted! \nCleaned " + mKilledAppCount + " apps", Snackbar.LENGTH_LONG)
+                        Snackbar snackbar = Snackbar.make(view, getResources().getString(R.string.boostedMessageStart) + mKilledAppCount + getResources().getString(R.string.boostedMessageEnd), Snackbar.LENGTH_LONG)
                                 .setAction("Action", null);
                         Snackbar.SnackbarLayout layout = (Snackbar.SnackbarLayout) snackbar.getView();
                         layout.setBackgroundColor(getResources().getColor(R.color.colorAccent));
@@ -360,11 +362,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Overview";
+                    return getResources().getString(R.string.overviewTabText);
                 case 1:
-                    return "BOOST";
+                    return getResources().getString(R.string.boostTabText);
                 case 2:
-                    return "TOOLS";
+                    return getResources().getString(R.string.toolsTabText);
             }
             return null;
         }

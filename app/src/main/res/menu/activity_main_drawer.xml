@@ -6,15 +6,15 @@
         <item
             android:id="@+id/nav_overview"
             android:icon="@mipmap/ic_home_black_24dp"
-            android:title="Overview" />
+            android:title="@string/overviewTabText" />
         <item
             android:id="@+id/nav_boost"
             android:icon="@mipmap/ic_toys_black_24dp"
-            android:title="Boost" />
+            android:title="@string/boostTabText" />
         <item
             android:id="@+id/nav_tools"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="@string/toolsTabText" />
     </group>
 
     <item android:title="Tools">
@@ -22,7 +22,7 @@
             <item
                 android:id="@+id/nav_talking_battery"
                 android:icon="@mipmap/ic_sentiment_very_satisfied_black_24dp"
-                android:title="Talking Battery" />
+                android:title="@string/title_activity_talking_battery" />
         </menu>
     </item>
 

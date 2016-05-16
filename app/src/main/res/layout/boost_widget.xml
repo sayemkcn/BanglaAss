@@ -1,17 +1,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bootWidgetLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
+    android:background="@android:color/black"
     android:gravity="center"
-    android:id="@+id/bootWidgetLayout"
     android:padding="@dimen/widget_margin">
 
     <ImageView
         android:id="@+id/appwidget_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@mipmap/ic_toys_white_24dp" />
+        android:src="@drawable/appwidget_preview" />
+
+    <!--<ImageView-->
+        <!--android:id="@+id/appwidget_image"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:src="@drawable/example_appwidget_preview" />-->
 
 </RelativeLayout>
