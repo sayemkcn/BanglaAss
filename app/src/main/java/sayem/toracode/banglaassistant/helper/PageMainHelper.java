@@ -71,7 +71,6 @@ public class PageMainHelper extends BroadcastReceiver {
         if (BROADCASTRECEIVER == null) {
             BROADCASTRECEIVER = this;
         }
-
         /******** REGISTER LISTENER FORM MAINACTIVITY *******/
         LocalBroadcastManager.getInstance(this.activity).registerReceiver(
                 BROADCASTRECEIVER, new IntentFilter("UsageUpdate"));

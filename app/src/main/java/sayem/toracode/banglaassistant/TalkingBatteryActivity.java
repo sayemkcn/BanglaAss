@@ -310,4 +310,10 @@ public class TalkingBatteryActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+    }
 }

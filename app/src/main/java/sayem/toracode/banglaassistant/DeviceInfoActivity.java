@@ -64,4 +64,10 @@ public class DeviceInfoActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+    }
 }

@@ -25,8 +25,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.RotateAnimation;
 import android.widget.TextView;
 
+import com.ToxicBakery.viewpager.transforms.RotateDownTransformer;
+import com.ToxicBakery.viewpager.transforms.RotateUpTransformer;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.List;
@@ -90,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         this.navigationView = (NavigationView) this.findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_boost);
+        this.navigationView.setNavigationItemSelectedListener(this);
+//        navigationView.setCheckedItem(R.id.nav_boost);
         // init Tab Layout
         tabLayout = (TabLayout) this.findViewById(R.id.tabLayout);
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -112,11 +115,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setPageTransformer(false,new RotateDownTransformer());
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                Log.d("PAGE","position: "+position+"\nPosition Offset: "+positionOffset+"\nPosition Offset Pixels: "+positionOffsetPixels);
-
+//                Log.d("PAGE", "position: " + position + "\nPosition Offset: " + positionOffset + "\nPosition Offset Pixels: " + positionOffsetPixels);
+                if (position == 0) {
+                    navigationView.setCheckedItem(R.id.nav_overview);
+                } else if (position == 1) {
+                    navigationView.setCheckedItem(R.id.nav_boost);
+                } else if (position == 2) {
+                    navigationView.setCheckedItem(R.id.nav_tools);
+                }
             }
 
             @Override
@@ -197,6 +207,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public NavigationView getNavigationView() {
+        return this.navigationView;
     }
 
     @Override
@@ -374,4 +388,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+    }
 }
