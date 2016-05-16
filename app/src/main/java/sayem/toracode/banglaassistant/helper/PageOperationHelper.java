@@ -31,7 +31,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import sayem.toracode.banglaassistant.DeviceInfoActivity;
 import sayem.toracode.banglaassistant.R;
+import sayem.toracode.banglaassistant.TalkingBatteryActivity;
 import sayem.toracode.banglaassistant.commons.Pref;
 
 /**
@@ -54,6 +56,8 @@ public class PageOperationHelper {
     private Button sleepScreenButton;
     private Button volumeSettingButton;
     private Button phoneRingtoneButton;
+    private Button talkingBatteryButton;
+    private Button deviceInfoButton;
 
     // For alert Dialog | brightness dialog
     View dialogView;
@@ -86,7 +90,8 @@ public class PageOperationHelper {
         this.sleepScreenButton = (Button) rootView.findViewById(R.id.screenSleepTimeButton);
         this.volumeSettingButton = (Button) rootView.findViewById(R.id.volumeSettingButton);
         this.phoneRingtoneButton = (Button) rootView.findViewById(R.id.phoneRingtoneButton);
-
+        this.talkingBatteryButton = (Button) rootView.findViewById(R.id.talkingBatteryButton);
+        this.deviceInfoButton = (Button) rootView.findViewById(R.id.deviceInfoButton);
 
         // SET DEFAULTS FOR BUTTONS
         // bluetooth
@@ -121,6 +126,8 @@ public class PageOperationHelper {
         this.sleepScreenButton.setOnClickListener(listener);
         this.volumeSettingButton.setOnClickListener(listener);
         this.phoneRingtoneButton.setOnClickListener(listener);
+        this.talkingBatteryButton.setOnClickListener(listener);
+        this.deviceInfoButton.setOnClickListener(listener);
     }
 
     // Listener object for All of the tools button
@@ -164,6 +171,12 @@ public class PageOperationHelper {
                     break;
                 case R.id.phoneRingtoneButton:
                     phoneRingerModeDialog();
+                    break;
+                case R.id.talkingBatteryButton:
+                    context.startActivity(new Intent(context, TalkingBatteryActivity.class));
+                    break;
+                case R.id.deviceInfoButton:
+                    context.startActivity(new Intent(context, DeviceInfoActivity.class));
                     break;
             }
 
