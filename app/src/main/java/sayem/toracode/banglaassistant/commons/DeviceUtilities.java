@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 public class DeviceUtilities {
 
 
-    public static String getAndroidId(Activity context){
+    public static String getAndroidId(Activity context) throws NullPointerException{
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 

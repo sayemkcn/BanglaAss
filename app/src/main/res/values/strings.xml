@@ -29,35 +29,34 @@
     <string name="navigation_drawer_close">ড্রয়ার বন্ধ করুন</string>
 
     <!--Talking Battery-->
+    <string name="app_link">https://play.google.com/store/apps/details?id=sayem.picosoft.talkingbattery</string>
     <string name="dev_url">https://www.facebook.com/sayem.rimon</string>
     <string name="fb_page_link">https://www.facebook.com/PicoSoftApps</string>
     <string name="hello_world">Hello world!</string>
-    <string name="prefTitleLanguage">ভাষা</string>
-    <string name="prefTitleVoice">কণ্ঠস্বর </string>
-    <string name="voiceNotiCheckBoxText">ব্যাটারি কথা বলবে </string>
-    <string name="prefTitleStatusBar">স্ট্যাটাস বার</string>
-    <string name="prefTitleWhatToNotify">কখন নোটিফিকেশন দেবে</string>
-    <string name="batteryLevelInStatusBarCheckBox">স্ট্যাটাস বারে ব্যাটারী লেভেল দেখাবে</string>
-    <string name="usbConnectedCheckBox">ইউএসবি কানেঙ্ক হলে</string>
-    <string name="chargerConnectedCheckBox">চার্জার কানেক্ট হলে</string>
-    <string name="batteryLowCheckBox">ব্যাটারী লো হলে</string>
-    <string name="media_volume_text">ভলিউম</string>
-    <string name="prefTitleAccent">উচ্চারন </string>
-
-    <!--options menu item-->
-    <string name="action_rate">আমাকে রেটিং দিন</string>
-    <string name="action_share">শেয়ার করুন</string>
-    <string name="action_about">অ্যাপ সম্পর্কে</string>
-    <string name="action_like_us">আমাদের ফেসবুক পেইজ</string>
+    <string name="prefTitleLanguage">Language</string>
+    <string name="prefTitleVoice">Voice</string>
+    <string name="voiceNotiCheckBoxText">Voice Notifications</string>
+    <string name="prefTitleStatusBar">Status Bar</string>
+    <string name="prefTitleWhatToNotify">What to Notify</string>
+    <string name="batteryLevelInStatusBarCheckBox">Battery Level in Status Bar</string>
+    <string name="usbConnectedCheckBox">USB Connected</string>
+    <string name="chargerConnectedCheckBox">Charger Connected</string>
+    <string name="batteryLowCheckBox">BatteryLow</string>
+    <string name="media_volume_text">Volume</string>
+    <string name="prefTitleAccent">Accent</string>
+    <string name="action_rate">Rate Me</string>
+    <string name="action_share">Share</string>
+    <string name="action_about">About</string>
+    <string name="action_like_us">Like Us</string>
 
     <string-array name="languages">
-        <item>বাংলা</item>
+        <item>Bangla</item>
         <item>English</item>
     </string-array>
     <string-array name="accent">
-        <item>কোকিলকন্ঠ</item>
-        <item>পুরুষকন্ঠ</item>
-        <item>চট্টগ্রাম স্থানীয়</item>
+        <item>Female</item>
+        <item>Male</item>
+        <item>Chittagong Native</item>
     </string-array>
 
     <string name="dummy_button">Dummy Button</string>
@@ -98,7 +97,7 @@
     <string name="airplaneModeOffText">এয়ারপ্লেন মোড বন্ধ </string>
     <string name="airplaneModeOnText">এয়ারপ্লেন মোড চালু</string>
     <string name="screenBrightnessButtonText">স্ক্রিনের উজ্জলতা </string>
-    <string name="sleepScreenButtonText">রিন বন্ধের সময়</string>
+    <string name="sleepScreenButtonText">স্ক্রীন বন্ধের সময়</string>
     <string name="volumeSettingsButtonText">ভলিউম সেটিংস </string>
     <string name="phoneRingtoneButtonText">রিংটোন মোড </string>
     <string name="deviceInfoButtonText">ডিভাইস সম্পর্কিত তথ্য</string>

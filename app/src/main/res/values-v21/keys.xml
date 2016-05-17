@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="homeAdUnitId">ca-app-pub-7944444189407778/8563338240</string>
-    <string name="interstitialAdUnitId">ca-app-pub-7944444189407778/2237603043</string>
+    <string name="adUnitIdOnHome">ca-app-pub-7944444189407778/9601076649</string>
+    <string name="interstitialAdUnitId">ca-app-pub-7944444189407778/5949606246 </string>
     <string name="deviceId">1B0E5F8B97C37F9BEA4EED753103D5D9</string>
 
 </resources>

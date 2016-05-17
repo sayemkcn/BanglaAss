@@ -19,6 +19,9 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.text.DecimalFormat;
 
 import sayem.toracode.banglaassistant.R;
@@ -52,6 +55,7 @@ public class PageMainHelper extends BroadcastReceiver {
 
 
     public PageMainHelper(final FragmentActivity activity, View rootView) {
+
         this.activity = activity;
         this.mPageProcessHelper = new PageProcessHelper(activity);
         this.cpuUsageTextView = (TextView) rootView.findViewById(R.id.cpuUsageChangableTextView);
@@ -206,8 +210,8 @@ public class PageMainHelper extends BroadcastReceiver {
                 openSystemFileManager();
             } else if (id == R.id.cpuMemoryLayout) {
                 final ProgressDialog progressDialog = new ProgressDialog(activity);
-                progressDialog.setTitle("Please wait..");
-                progressDialog.setMessage("Killing background processes and Boosting your phone.");
+                progressDialog.setTitle(activity.getResources().getString(R.string.boostingDialogTitle));
+                progressDialog.setMessage(activity.getResources().getString(R.string.boostingDialogDetails));
                 progressDialog.setCancelable(false);
                 progressDialog.show();
                 new Thread(new Runnable() {
@@ -222,7 +226,7 @@ public class PageMainHelper extends BroadcastReceiver {
                             public void run() {
                                 new AlertDialog.Builder(activity)
                                         .setTitle("Boosted!")
-                                        .setMessage("Bamnn!!\nI've successfully Killed " + killedAppCount + " apps to boost your phone like a bomb!")
+                                        .setMessage(activity.getResources().getString(R.string.boostedMessageStart) + killedAppCount + activity.getResources().getString(R.string.boostedMessageEnd))
                                         .setCancelable(false)
                                         .setIcon(activity.getResources().getDrawable(R.mipmap.ic_launcher))
                                         .setPositiveButton("Thanks", null)

@@ -34,22 +34,26 @@ public class DeviceInfoActivity extends AppCompatActivity {
         TextView userTv = (TextView) this.findViewById(R.id.userTextView);
         TextView hostTv = (TextView) this.findViewById(R.id.hostTextView);
 
-        androidIdTv.setText(DeviceUtilities.getAndroidId(this));
-        if (!DeviceUtilities.readKernelVersion().contains("ERROR"))
-            karnelVersionTv.setText(DeviceUtilities.readKernelVersion());
-        modelTv.setText(DeviceUtilities.getDeviceModelNumber());
-        osTv.setText(DeviceUtilities.OSNAME + " " + DeviceUtilities.OSVERSION);
-        releaseTv.setText(DeviceUtilities.RELEASE);
-        deviceTv.setText(DeviceUtilities.DEVICE);
-        brandModelTv.setText(DeviceUtilities.BRAND + "/" + DeviceUtilities.MODEL);
-        productTv.setText(DeviceUtilities.PRODUCT);
-        displayTv.setText(DeviceUtilities.DISPLAY);
-        unknownTv.setText(DeviceUtilities.UNKNOWN);
-        hardwareTv.setText(DeviceUtilities.HARDWARE);
-        deviceIdTv.setText(DeviceUtilities.ID);
-        manufacturerSerialTv.setText(DeviceUtilities.MANUFACTURER);
-        userTv.setText(DeviceUtilities.USER);
-        hostTv.setText(DeviceUtilities.HOST);
+        try {
+            androidIdTv.setText(DeviceUtilities.getAndroidId(this));
+            if (!DeviceUtilities.readKernelVersion().contains("ERROR"))
+                karnelVersionTv.setText(DeviceUtilities.readKernelVersion());
+            modelTv.setText(DeviceUtilities.getDeviceModelNumber());
+            osTv.setText(DeviceUtilities.OSNAME + " " + DeviceUtilities.OSVERSION);
+            releaseTv.setText(DeviceUtilities.RELEASE);
+            deviceTv.setText(DeviceUtilities.DEVICE);
+            brandModelTv.setText(DeviceUtilities.BRAND + "/" + DeviceUtilities.MODEL);
+            productTv.setText(DeviceUtilities.PRODUCT);
+            displayTv.setText(DeviceUtilities.DISPLAY);
+            unknownTv.setText(DeviceUtilities.UNKNOWN);
+            hardwareTv.setText(DeviceUtilities.HARDWARE);
+            deviceIdTv.setText(DeviceUtilities.ID);
+            manufacturerSerialTv.setText(DeviceUtilities.MANUFACTURER);
+            userTv.setText(DeviceUtilities.USER);
+            hostTv.setText(DeviceUtilities.HOST);
+        }catch (Exception e){
+
+        }
 
 
     }
