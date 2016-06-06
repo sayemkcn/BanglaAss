@@ -84,7 +84,7 @@
     <string name="bluetoothButtonOnText">ব্লুটুথ চালু </string>
     <string name="bluetoothButtonOffText">ব্লুটুথ বন্ধ </string>
     <string name="wifiButtonOffText">ওয়াই-ফাই বন্ধ</string>
-    <string name="wifiButtonOnText">অটো সিঙ্ক চালু </string>
+    <string name="wifiButtonOnText">ওয়াই-ফাই চালু</string>
     <string name="mobileNetworkButtonOnText">মোবাইল নেটওয়ার্ক চালু </string>
     <string name="mobileNetworkButtonOffText">মোবাইল নেটওয়ার্ক বন্ধ</string>
     <string name="autoSyncButtonOnText">অটো সিঙ্ক চালু </string>

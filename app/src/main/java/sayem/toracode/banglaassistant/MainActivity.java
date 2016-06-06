@@ -157,6 +157,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+        // stop reload after page change
+        mViewPager.setOffscreenPageLimit(2);
 
         // TAB LAYOUT
         tabLayout.addTab(tabLayout.newTab().setText("Home"));
@@ -339,6 +341,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     rootView = inflater.inflate(R.layout.fragment_process, container, false);
                     final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.processRecyclerView);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+                    recyclerView.setNestedScrollingEnabled(false);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {

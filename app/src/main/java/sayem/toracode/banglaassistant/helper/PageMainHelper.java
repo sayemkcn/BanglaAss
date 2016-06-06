@@ -79,7 +79,7 @@ public class PageMainHelper extends BroadcastReceiver {
         LocalBroadcastManager.getInstance(this.activity).registerReceiver(
                 BROADCASTRECEIVER, new IntentFilter("UsageUpdate"));
 
-        batteryLevelTextView.setText(String.valueOf((int) getBatteryLevel(this.activity)));
+        batteryLevelTextView.setText(String.valueOf((int) getBatteryLevel(this.activity)+"%"));
         batteryTempTextView.setText(getBatteryTemperature(this.activity));
         batteryVoltageTextView.setText(getBatteryVoltage(this.activity));
 
