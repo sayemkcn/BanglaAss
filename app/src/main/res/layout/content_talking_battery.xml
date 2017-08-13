@@ -148,7 +148,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             ads:adSize="BANNER"
-            ads:adUnitId="@string/homeAdUnitId" />
+            ads:adUnitId="@string/adUnitIdOnHome" />
     </LinearLayout>
 
 </RelativeLayout>

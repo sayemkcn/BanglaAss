@@ -32,6 +32,7 @@
         <activity
             android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
             <!-- <intent-filter> -->
@@ -43,7 +44,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name_bangla"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -88,10 +90,12 @@
         <activity
             android:name=".TalkingBatteryActivity"
             android:label="@string/title_activity_talking_battery"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".DeviceInfoActivity"
             android:label="@string/title_activity_device_info"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -31,6 +31,9 @@ import android.widget.TextView;
 import com.ToxicBakery.viewpager.transforms.RotateDownTransformer;
 import com.ToxicBakery.viewpager.transforms.RotateUpTransformer;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.List;
 
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static List<SingleProcessItem> processList;
     private TabLayout tabLayout;
     private NavigationView navigationView;
+    private InterstitialAd interstitial;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -86,6 +90,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Create the interstitial.
+        interstitial = new InterstitialAd(this);
+        interstitial.setAdUnitId(getResources().getString(R.string.interstitialAdUnitId));
+
+        // Create ad request.
+        AdRequest intAdRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice(getResources().getString(R.string.deviceId))
+                .build();
+
+        // Begin loading your interstitial.
+        interstitial.loadAd(intAdRequest);
+
+        // End Loading Interstitial
         // Navigation Drawer
         DrawerLayout drawer = (DrawerLayout) this.findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -139,6 +157,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+        // stop reload after page change
+        mViewPager.setOffscreenPageLimit(2);
 
         // TAB LAYOUT
         tabLayout.addTab(tabLayout.newTab().setText("Home"));
@@ -146,12 +166,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tabLayout.addTab(tabLayout.newTab().setText("Tools"));
         // add viewpager with tablayout
         tabLayout.setupWithViewPager(mViewPager);
-//        tabLayout.addTab(tabLayout.newTab().setText(this.getResources().getString(R.string.tab_featured_news)).setTag(TAG_FEATURED_NEWS_TAB));
-//        tabLayout.addTab(tabLayout.newTab().setText(this.getResources().getString(R.string.tab_latest_news)).setTag(TAG_LATEST_NEWS_TAB));
-//        tabLayout.addTab(tabLayout.newTab().setText(this.getResources().getString(R.string.tab_most_read)).setTag(TAG_MOST_READ_TAB));
-//        tabLayout.setOnTabSelectedListener(tabListener);
-
-        // Set up the ViewPager with the sections adapter.
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -184,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 int currentItem = mViewPager.getCurrentItem();
                                 mViewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager()));
                                 mViewPager.setCurrentItem(currentItem);
+                                displayInterstitial();
                             }
                         });
 
@@ -196,6 +211,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    private void displayInterstitial() {
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+        }
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -321,6 +341,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     rootView = inflater.inflate(R.layout.fragment_process, container, false);
                     final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.processRecyclerView);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+                    recyclerView.setNestedScrollingEnabled(false);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
